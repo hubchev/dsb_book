@@ -1,0 +1,14 @@
+\ifx\undefined\bysame
+\newcommand{\bysame}{\leavevmode\hbox to\leftmargin{\hrulefill\,\,}}
+\fi
+\begin{thebibliography}{xx}
+
+\harvarditem[Cochrane]{Cochrane}{2005}{Cochrane2005Writing}
+{\bf Cochrane, John}, ``Writing tips for PhD Students,'' Technical Report 2005.
+
+\harvarditem[Provost and Fawcett]{Provost and Fawcett}{2013}{Provost2013Data}
+{\bf Provost, Foster and Tom Fawcett}, {\it Data Science for Business: What You
+  Need to Know About Data Mining and Data-Analytic Thinking}, O'Reilly Media,
+  2013.
+
+\end{thebibliography}
