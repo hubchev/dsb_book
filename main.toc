@@ -22,9 +22,9 @@
 \contentsline {section}{\numberline {3.1}\LaTeX }{10}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Git and GitHub}{11}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Style of Writing}{11}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Topic 1}{12}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Dictionary-based sentiment analysis}{12}{chapter.4}%
 \vskip -10pt
-\contentsline {chapter}{\hskip 1.3em\mdseries \scshape \scriptsize Student \\ student@email.de}{}{}
+\contentsline {chapter}{\hskip 1.3em\mdseries \scshape \scriptsize Ryan Zidago \\ \href {mailto:zidago.ryan@hs-fresenius.de}{zidago.ryan@hs-fresenius.de}}{}{}
 \vskip 5pt
 \contentsline {section}{\numberline {4.1}Motivation}{12}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Methodological Issues}{12}{section.4.2}%
