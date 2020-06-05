@@ -3,12 +3,56 @@
 \fi
 \begin{thebibliography}{xx}
 
+\harvarditem[Chung et al.]{Chung, Chong, Chua and
+  Na}{2019}{chung_evolution_2019}
+{\bf Chung, Siyoung, Mark Chong, Jie~Sheng Chua, and Jin~Cheon Na}, ``Evolution
+  of corporate reputation during an evolving controversy,'' 2019, {\it 23} (1),
+  52--71.
+
 \harvarditem[Cochrane]{Cochrane}{2005}{Cochrane2005Writing}
 {\bf Cochrane, John}, ``Writing tips for PhD Students,'' Technical Report 2005.
+
+\harvarditem[Davcheva et al.]{Davcheva, Adam and
+  Benlian}{2019}{davcheva_user_2019}
+{\bf Davcheva, Elena, Martin Adam, and Alexander Benlian}, ``User Dynamics in
+  Mental Health Forums – A Sentiment Analysis Perspective,'' 2019, p.~15.
+
+\harvarditem[Geetha et al.]{Geetha, Singha and
+  Sinha}{2017}{geetha_relationship_2017}
+{\bf Geetha, M., Pratap Singha, and Sumedha Sinha}, ``Relationship between
+  customer sentiment and online customer ratings for hotels - An empirical
+  analysis,'' 2017, {\it 61}, 43--54.
+
+\harvarditem[Hutto and Gilbert]{Hutto and Gilbert}{2014}{hutto_vader_2014}
+{\bf Hutto, C~J and Eric Gilbert}, ``{VADER}: A Parsimonious Rule-based Model
+  for Sentiment Analysis of Social Media Text,'' 2014, pp.~216--225.
+
+\harvarditem[Mohan et al.]{Mohan, Mullapudi, Sammeta, Vijayvergia and
+  Anastasiu}{2019}{mohan_stock_2019}
+{\bf Mohan, Saloni, Sahitya Mullapudi, Sudheer Sammeta, Parag Vijayvergia, and
+  David~C. Anastasiu}, ``Stock Price Prediction Using News Sentiment
+  Analysis,'' in ``2019 {IEEE} Fifth International Conference on Big Data
+  Computing Service and Applications ({BigDataService})'' {IEEE} 2019,
+  pp.~205--208.
+
+\harvarditem[O'Connor]{O'Connor}{2010}{oconnor_managing_2010}
+{\bf O'Connor, Peter}, ``Managing a Hotel's Image on {TripAdvisor},'' 2010,
+  {\it 19} (7), 754--772.
 
 \harvarditem[Provost and Fawcett]{Provost and Fawcett}{2013}{Provost2013Data}
 {\bf Provost, Foster and Tom Fawcett}, {\it Data Science for Business: What You
   Need to Know About Data Mining and Data-Analytic Thinking}, O'Reilly Media,
   2013.
+
+\harvarditem[Vidya et al.]{Vidya, Fanany and Budi}{2015}{vidya_twitter_2015}
+{\bf Vidya, Nur~Azizah, Mohamad~Ivan Fanany, and Indra Budi}, ``Twitter
+  Sentiment to Analyze Net Brand Reputation of Mobile Phone Providers,'' 2015,
+  {\it 72}, 519--526.
+
+\harvarditem[Xiang et al.]{Xiang, Schwartz, Gerdes and
+  Uysal}{2015}{xiang_what_2015}
+{\bf Xiang, Zheng, Zvi Schwartz, John~H. Gerdes, and Muzaffer Uysal}, ``What
+  can big data and text analytics tell us about hotel guest experience and
+  satisfaction?,'' 2015, {\it 44}, 120--130.
 
 \end{thebibliography}
