@@ -26,11 +26,11 @@
 \vskip -10pt
 \contentsline {chapter}{\hskip 1.3em\mdseries \scshape \scriptsize Ryan Zidago \\ \href {mailto:zidago.ryan@hs-fresenius.de}{zidago.ryan@hs-fresenius.de}}{}{}
 \vskip 5pt
-\contentsline {section}{\numberline {4.1}Motivation}{12}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Methodological Issues}{12}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Applications in R}{12}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Example(s) From the Real World}{12}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Conclusion}{12}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Exercises}{12}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Test Questions}{13}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Glossary}{13}{section.4.8}%
+\contentsline {section}{\numberline {4.1}Motivation}{13}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Methodological Issues}{14}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Application in Python}{15}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Example(s) From the Real World}{21}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Conclusion}{22}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Exercises}{23}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Test Questions}{24}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Glossary}{26}{section.4.8}%
