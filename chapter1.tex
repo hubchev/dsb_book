@@ -6,11 +6,11 @@
 	\end{abstract}
 	
 	\begin{goals}
-		\item having a basic understanding of sentiment analysis and its real-world application
-		\item understanding the different approaches to sentiment analysis and their trade-offs
-		\item knowing how to navigate the open-source ecosystem to find flaws or information in external software dependencies
-		\item conducting simple dictionary-based sentiment analysis in an independent manner with the aid of the Python programming language and the vaderSentiment library
-		\item critically reflect on the produced work and assess its limitations as well as its possibilities for further improvement
+		\item You will get a basic understanding of sentiment analysis and its real-world application
+		\item You will understand the different approaches to sentiment analysis and their trade-offs
+		\item You know how to navigate the open-source ecosystem to find flaws or information in external software dependencies
+		\item You will conduct simple dictionary-based sentiment analysis in an independent manner with the aid of the Python programming language and the vaderSentiment library
+		\item You will critically reflect on the produced work and assess its limitations as well as its possibilities for further improvement
 	\end{goals}
 	
 	\section{Motivation}
@@ -20,33 +20,26 @@
 	
 	There are numerous applications to sentiment analysis: it is widely used in marketing, to better understand how consumer describe their experiences online (\citealp{xiang_what_2015}), to asses corporate reputation (\citealp{oconnor_managing_2010}, \citealp{vidya_twitter_2015}, \citealp{chung_evolution_2019}), but also in finance, as a mean to predict stock market movements (\citealp{mohan_stock_2019}) and in health care to understand the current mental health of forum users (\citealp{davcheva_user_2019}).
 	
-	By the end of this chapter, the reader will have a firm understanding of sentiment analysis, the different approaches used, and how to compute sentiment of textual data, with the intent to extract relevant information for decision making and solving real-world complex business problems.
+	By the end of this chapter, the reader will have a firm understanding of sentiment analysis, the different approaches used, and how to compute sentiment of textual data, with the intent to extract relevant information for decision-making and solving real-world complex business problems.
 	
 	In the \textbf{Methodological Issues} section, we will be introduced to sentiment analysis, what are sentiments, as well as the different approaches to extract sentiment. In the \textbf{Application in Python} section, we will create a program to compute sentiment out of online travel reviews. In the \textbf{Example from the Real World} section, the reader will be introduced to one of the application of sentiment analysis in the business world: understanding hotel guest experience and satisfaction. Finally, exercises (with their respective solutions) will be made available to the reader.
 	\section{Methodological Issues}
 
-	What is sentiment analysis?
 	Sentiment analysis is the study of sentiments and opinions that are contained in text. According to \cite{hutto_vader_2014} \citep{hutto_vader_2014}, "sentiment analysis, or opinion mining, is an active area of study in the field of natural language processing that analyzes people's opinions, sentiments, evaluations, attitudes, and emotions via the computational treatment of subjectivity in text".
-	
-	What is a sentiment? How does it relates to a sentence?
-	
-	In the context of sentiment analysis, a sentiment can be either positive, negative or neutral.To have a better understanding of how a sentiment relates to a sentence, let us consider the following examples and guess the sentiment they convey:
+
+	In the context of sentiment analysis, a sentiment can be either positive, negative or neutral. To have a better understanding of how a sentiment relates to a sentence, let us consider the following examples and guess the sentiment they convey:
 	\begin{enumerate}
 	\item[(1)] "I love this hotel, the staff is always helpful!"
 	\item[(2)] "This restaurant mainly offers African food."
 	\item[(3)] "I hate this fitness studio, it is always crowded!"
 	\end{enumerate}
 
-	Here, in sentence (1), there is a positive meaning, the author states its subjective opinion, carrying a positive sentiment, towards the hotel and its staff. In example (2), the sentence carries a neutral sentiment; it is just a plain objective fact, devoided of subjectivity and assessment, towards what type of food the restaurant offers. Finally, in the last example (3), it become pretty obvious that the sentiment of the text is negative, the fitness studio is describe in bad term "always crowded", and the author states a negative opinion towards the studio "I hate this fitness studio".
-	
-	What is VADER?
+	Here, in sentence (1), there is a positive meaning, the author states its subjective opinion, carrying a positive sentiment, towards the hotel and its staff. In example (2), the sentence carries a neutral sentiment; it is just a plain objective fact, without subjectivity and assessment, towards what type of food the restaurant offers. Finally, in the last example (3), it becomes pretty obvious that the sentiment of the text is negative, the fitness studio is described in bad term "always crowded", and the author states a negative opinion towards the studio "I hate this fitness studio".
 	
 	\href{https://github.com/cjhutto/vaderSentiment}{VADER} is a sentiment dictionary. In contrast to a normal dictionary, like the Merriam-Webster, a sentiment dictionary does not map a word to its definition or its meaning, but rather, to its sentiment.
 	VADER stands for Valence Aware Dictionary and sEntiment Reasoner, and is purposefully built for social media user-generated content in the form of text (Facebook posts, Reddit comments, Twitter's tweets, etc ...). Another key selling point of the VADER dictionary is its ability to detect the valence of a sentiment: the dictionary registers the intensity of the assessed lexical feature. For instance, the word "good" is evaluated to have a compound score of 0.4404, while the words "great" and "best" have respectively a score of 0.6249 and 0.6369. Here, one can clearly observe that, as the intensity of the word increases, its given compound score also further increases too.\newline
 	
-	How was the VADER dictionary built? How did they decided which word is worthy to be included in the dictionary and which are not? How did they figure out the exact compound score for each lexical features?
-	
-	Firstly, the researchers extracted lexical features that were already present in some of the most popular sentiment dictionaries, such as the \href{https://wjh.harvard.edu/~inquirer/}{General Inquirer} or \href{https://csea.phhp.ufl.edu/media.html#bottommedia}{ANEW}. Then, they added other lexical feature that are frequently used in the context of social media text, like emoticons, acronyms and slang. Indeed, one of the selling point of the VADER dictionary is that it is particularly well-suited for social media content. Emoticons too convey sentiment and therefore, are relevant enough to also be included in the dictionary.
+	Firstly, the researchers extracted lexical features that were already present in some of the most popular sentiment dictionaries, such as the \href{https://wjh.harvard.edu/~inquirer/}{General Inquirer} or \href{https://csea.phhp.ufl.edu/media.html#bottommedia}{ANEW}. Then, they added other lexical feature that are frequently used in the context of social media text, like emoticons, acronyms and slang. Indeed, one of the selling point of the VADER dictionary is that it is particularly well-suited for social media content. Emoticons convey sentiment and therefore, are relevant enough to also be included in the dictionary.
 	
 	Then, they used \href{https://en.wikipedia.org/wiki/Wisdom_of_the_crowd}{wisdom-of-the-crowd} to asses the sentiment of each lexical feature, and only kept those for which there was a large consensus; which resulted in more than 7500 assessed lexical features.
 	
@@ -56,7 +49,7 @@
 	\begin{Verbatim}
 $ docker pull ryanzidago/sentiment-analysis
 	\end{Verbatim}
-	It will download all of the software needed for our hands-on exercise. Once the download is complete, execute the following command:
+	It will download all the software needed for our hands-on exercise. Once the download is complete, execute the following command:
 	\begin{Verbatim}
 $ docker run --rm -it ryanzidago/sentiment-analysis
 	\end{Verbatim}
@@ -101,7 +94,7 @@ but it was way too expensive and the staff was rude and impatient."""
 analyzer.polarity_scores(sentence)
 # => {'neg': 0.268, 'neu': 0.63, 'pos': 0.102, 'compound': -0.6369}
 	\end{verbatim}
-	As you can see, the \verb|compound_score| is equal to -0.6369 while with the exclamation mark, it was equal to -0.6696. Feel free to add more exclamation marks and observe how it influences the actual sentence's sentiment intensity. Then, upercase all letter of a high-sentiment word, for example, try the following sentence: 
+	As you can see, the \verb|compound_score| is equal to -0.6369 while with the exclamation mark, it was equal to -0.6696. Feel free to add more exclamation marks and observe how it influences the actual sentence's sentiment intensity. Then, uppercase all letter of a high-sentiment word, for example, try the following sentence: 
 	\begin{Verbatim}
 sentence = """BEST breakfast I have ever had, 
 but it was way to EXPENSIVE and the staff was RUDE and IMPATIENT!"""
@@ -203,7 +196,7 @@ compound_score = sum(compound_scores)
 print(compound_score)
 # => -1.2965
 	\end{Verbatim}
-	The computed sentiment is more accurate than before. This was great, but certainly not enough. Let's compute the \verb|compound_scores| for each reviews in the dataset. To do that, we will need to organize our code into functions. The \verb|compute_compound_score()| function takes one argument, the \verb|text| of the review, that is then splitted into sentences. Finally, the function calculcates each \verb|compound_scores| for each \verb|sentences|; sums all \verb|compound_scores| and returns the \verb|compound_score| of the whole review text paragraph:
+	The computed sentiment is more accurate than before. This was great, but certainly not enough. Let's compute the \verb|compound_scores| for each reviews in the dataset. To do that, we will need to organize our code into functions. The \verb|compute_compound_score()| function takes one argument, the \verb|text| of the review, that is then splitted into sentences. Finally, the function calculates each \verb|compound_scores| for each \verb|sentences|; sums all \verb|compound_scores| and returns the \verb|compound_score| of the whole review text paragraph:
 	\begin{Verbatim}
 def compute_compound_score(text):
 	sentence = text.split(".")
@@ -223,7 +216,7 @@ review_dataframe['text_compound_score'] = compound_scores
 	\end{Verbatim}
 	Want to see the result? Try \verb|review_dataframe.iloc[100]| to see the 100th review. At the bottom of the printed message, you will see a new column \verb|text_compound_score| with the newly computed \verb|compound_score| for this review.
 	
-	This was great. Now, we could categorized each reviews into positive, negative or neutral reviews based on the \verb|compound_score| that we have just obtained. To do that, let us create another function:
+	This was great. Now, we could categorize each reviews into positive, negative or neutral reviews based on the \verb|compound_score| that we have just obtained. To do that, let us create another function:
 	\begin{Verbatim}
 def categorizes_based_on_text_compound_score(text):
 	compound_score = compute_compound_score(text)
@@ -245,41 +238,37 @@ for text in review_dataframe['text']]
 review_dataframe['categorized_based_on_text_compound_score'] = 
 categorized_texts
 	\end{Verbatim}
-	Now, the reader should be able, all by themselve, to inspect the recently updated dataframe to verify if they correctly categorized each reviews.
+	Now, the reader should be able, all by themselves, to inspect the recently updated dataframe to verify if they correctly categorized each reviews.
 	
-	In the next section, the reader will be introducted to an example of a sentiment analysis project from the real world, where researchers studied the relationship between review rating and sentiment rating.
+	In the next section, the reader will be introduced to an example of a sentiment analysis project from the real world, where researchers studied the relationship between review rating and sentiment rating.
 	
 	\section{Example(s) From the Real World}\label{sec:examplerealworld}
-	\cite{geetha_relationship_2017} studied the relationship between customer sentiment and online ratings for hotels. They argue that, in order to improve the extremly competitive hotel industry, it is required to improve the understanding of its customers through reviews and ratings that they leave online.
+	\cite{geetha_relationship_2017} studied the relationship between customer sentiment and online ratings for hotels. They argue that, in order to improve the extremely competitive hotel industry, it is required to improve the understanding of its customers through reviews and ratings that they leave online.
 	
-	 Their main hypothesis is that customer sentiment polarity has a positive effect on customer rating. \cite{geetha_relationship_2017} used \href{https://en.wikipedia.org/wiki/Simple_random_sample}{Simple Random Sampling} to select 20 budget hotels and 20 premium hotels, all located in the municipality of Goa, India. To classify reviews as either positive, neutral or negative, they also used a dictionary-based approach. Before feeding the sentences to their own implementation of a sentiment software, they processed the reviews by removing punctuations, numbers, \href{https://en.wikipedia.org/wiki/Stop_words}{stopwords}, white spaces. They also converted all letters to lower case and \href{https://en.wikipedia.org/wiki/Stemming}{stemmed} every words in reviews.
-	
-	As our now experienced reader can notice, their approach has several limitations in comparison with the vaderSentiment library: it does not factor in punctuations, capsulation and emoticons. Hence, "worst ratatouille ever." will carry the same sentiment score as "WORST RATATOUILLE EVER!!! ):" eventhough it is obvious that the latter sentence is more intense than the former one.
-	
+	Their main hypothesis is that customer sentiment polarity has a positive effect on customer rating. \cite{geetha_relationship_2017} used \href{https://en.wikipedia.org/wiki/Simple_random_sample}{Simple Random Sampling} to select 20 budget hotels and 20 premium hotels, all located in the municipality of Goa, India. To classify reviews as either positive, neutral or negative, they also used a dictionary-based approach. Before feeding the sentences to their own implementation of a sentiment software, they processed the reviews by removing punctuations, numbers, \href{https://en.wikipedia.org/wiki/Stop_words}{stopwords}, white spaces. They also converted all letters to lower case and \href{https://en.wikipedia.org/wiki/Stemming}{stemmed} every word in reviews.
+		
 	They found out that the most frequent words in both categories are quit the same ("hotel", "good", "room", "stay", "staff", etc.). The results of their study showcase a certain consistency between customer ratings and online travel review sentiments: the better the sentiment, the higher the rating. This also prove us that sentiment analysis is effective, otherwise there would be no correlation between review sentiment and review rating.
 	
 	\cite{geetha_relationship_2017} also discovered that customers from budget hotel were more critical of the hotel where they stayed, with only 55 percent of all reviews having a positive sentiment, while customers from premium hotels were overly satisfied regarding their accommodation, with more than 70 percent positive reviews.
 	
-	With this valuable information, hotel managers can start to dig deeper to figure out why exactly budget customers aren't as satisfied as premium customers; it could be that budget hotels in Goa need to reasses their communication strategy by making clear from the very begining what the customers should expect. Since budget hotels offer by definition, minimal ameneties and services, hotel managers could probably increase customer satisfaction and loyalty by improving the way hotel staff interacts with its guests.
+	With this valuable information, hotel managers can start to dig deeper to figure out why exactly budget customers aren't as satisfied as premium customers; it could be that budget hotels in Goa need to reassess their communication strategy by making clear from the very beginning what the customers should expect. Since budget hotels offer by definition, minimal amenities and services, hotel managers could probably increase customer satisfaction and loyalty by improving the way hotel staff interacts with its guests.
 	
 	\section{Conclusion}
-	We have learn many things throughout this chapter. We now know that sentiment analysis is about the study of sentiments that are contained within texts. We know that a sentiment is an evaluation of a token, than is categorized as either positive, negative or neutral. We also learned that sentiment analysis is used in a lot of various fields, such as finance, marketing, health-care. We successfuly conducted a small sentiment analysis project, by reading data from a dataset, computing the \verb|compound_score| of some reviews, and categorizing reviews as either positive, negative or neutral. We have learned how to use the vaderSentiment Python library to help us in our analysis.
+	We have learned many things throughout this chapter. We now know that sentiment analysis is about the study of sentiments that are contained within texts. We know that a sentiment is an evaluation of a token, that is categorized as either positive, negative or neutral. We also learned that sentiment analysis is used in a lot of various fields, such as finance, marketing, health-care. We successfully conducted a small sentiment analysis project, by reading data from a dataset, computing the \verb|compound_score| of some reviews, and categorizing reviews as either positive, negative or neutral. We have learned how to use the vaderSentiment Python library to help us in our analysis.
 	
 	Obviously, this is not all there is to it. There are many more things to learn. If the reader wishes to further their understanding of the topic, they can freely learn from the following resources:
 	\begin{itemize}
 		\item \href{https://towardsdatascience.com/scraping-tripadvisor-text-mining-and-sentiment-analysis-for-hotel-reviews-cc4e20aef333}{Web Scraping TripAdvisor, Text Mining and Sentiment Analysis for Hotel Reviews}. This is an online tutorial for conducting a full sentiment-analysis project, from A to Z, from the blog \href{https://towardsdatascience.com/}{TowardsDataScience}, authored by Susan Li. Completing this more extensive and advanced tutorial would be a great step right after having finished reading and working on the current chapter.
-		\item \href{http://comp.social.gatech.edu/papers/icwsm14.vader.hutto.pdf}{VADER: A Parsimonous Rule-based Model for Sentiment Analysis for Social Media Text}: This is the actual research paper of the VADER dictionary. The authors explain why did they built VADER and how did they do it, how did they chose to include some words and some not, etc. This paper is very informative, especially regarding how to built a sentiment dictionary.
+		\item \href{http://comp.social.gatech.edu/papers/icwsm14.vader.hutto.pdf}{VADER: A Parsimonous Rule-based Model for Sentiment Analysis for Social Media Text}: This is the actual research paper of the VADER dictionary. The authors explain why did they built VADER and how did they do it, how did they chose to include some words and some not, etc. This paper is very informative, especially regarding how to build a sentiment dictionary.
 		\item \href{https://www.cs.uic.edu/~liub/FBS/NLP-handbook-sentiment-analysis.pdf}{Sentiment Analysis and Subjectivity}. This is another research paper, authored by Bing Liu, from the University of Illinois at Chicago. In this paper, the author explain very well what is sentiment analysis and what are the challenges pertaining to it.
 	\end{itemize}
 
-	I hope that the reader enjoyed this chapter as much as I enjoyed writting it. Questions, remarks and improvement ideas can be sent to me by email. Next comes some exercises as well as test questions, to assess your newly acquired knowledge.
+	I hope that the reader enjoyed this chapter as much as I enjoyed writing it. Questions, remarks and improvement ideas can be sent to me by email. Next comes some exercises as well as test questions, to assess your newly acquired knowledge.
 
 	\section{Exercises}
-	After having successfully graduated from the Hochschule Fresenius, you have goten a position as a junior analyst at a prestigious consulting firm in London. Your manager wants to test you by handing out to you your first big project: helping a struggling hotel to understand their customer: the hotel director, Miss Smith, wishes to know why her customers are satisfied/dissatisfied in order to improve the offered services. She stated that the overall star ratings will not help her better emphatizes with her guests, because those same star ratings provide little context and actionable measures. Instead she wants to know what is hidden in the comment that her guests publish on online booking platforms.
+	After having successfully graduated from the Hochschule Fresenius, you have gotten a position as a junior analyst at a prestigious consulting firm in London. Your manager wants to test you by handing out to you your first big project: helping a struggling hotel to understand their customer: the hotel director, Miss Smith, wishes to know why her customers are satisfied/dissatisfied in order to improve the offered services. She stated that the overall star ratings will not help her better emphasizes with her guests, because those same star ratings provide little context and actionable measures. Instead, she wants to know what is hidden in the comment that her guests publish on online booking platforms. 
 	
-	Your task here, is to pretter the work so that other more senior analyst could start to dig deeper in the data. 
-	
-	Within the sandboxed environment is another dataset containing travel reviews from TripAdvisor, for the Premier Inn London Kensington hotel. Your task is to
+	Within the sandboxed environment is another dataset containing travel reviews from TripAdvisor, for the Premier Inn London Kensington hotel. Your task is to:
 	\begin{itemize}
 		\item [1.] Find out the percentage (no decimals) of positive and non-negative reviews in the dataset. To proceed, you will need to categorize each reviews as either positive or non-positive reviews, based on the \verb|compound_score| result. This is the stepping-stone for further analysis; this task is crucial.
 		\item [2.] Compute the average \verb|compound_score| (3 decimals places) for the entirety of the reviews. She would like to use it as another metrics to assess the quality of the hotel services. 
@@ -298,17 +287,17 @@ categorized_texts
 		\item [1.] In the context of sentiment analysis, is \textit{anger} a sentiment or an emotion?
 		\item [2.] Can a sentence carry several opposite sentiments at the same time?
 		\item [3.] What does the \verb|compound_score| returned by the function \verb|polarity_scores()| from vaderSentiment represent?
-		\item [4.] If you have a sentence with two clause, the first one being negative, the second one positive, which clause will impact the most the sentence's sentiment?
-		\item [5.] Does the vaderSentiment work best at the paragraph or sentence level? Does it give more accurante score after having computed the sentiment of a paragraph or after having computed the sentiment of a sentence?
+		\item [4.] If you have a sentence with two clauses, the first one being negative, the second one positive, which clause will impact the most the sentence's sentiment?
+		\item [5.] Does the vaderSentiment work best at the paragraph or sentence level? Does it give more accurate score after having computed the sentiment of a paragraph or after having computed the sentiment of a sentence?
 	\end{testquestion}
 
 		Answers:
 	\begin{itemize}
 		\item [1.] \textit{Anger} is an emotion. The emotion's sentiment would be \textit{negative}.
-		\item [2.] A sentence can carry several opposite sentiments. Let us consider the following example: "The waitress seemed to be under a lot of stress and the pizza arrived quiet late, but it was soooo tasty and worth the wait!". The first clause ("The waitress seemed to be under a lot of stress" and the pizza arrived quiet late") is a neutral/negative statement, while the second clause ("[...] but it was soooo tasty and worth the wait!") carries a positive sentiment.
+		\item [2.] A sentence can carry several opposite sentiments. Let us consider the following example: "The waitress seemed to be under a lot of stress and the pizza arrived quiet late, but it was soooo tasty and worth the wait!". The first clause ("The waitress seemed to be under a lot of stress" and the pizza arrived quite late") is a neutral/negative statement, while the second clause ("[...] but it was soooo tasty and worth the wait!") carries a positive sentiment.
 		\item [3.] The \verb|compound_score| represent the overall sentiment of the sentence. If one would need to select only a single sentiment from the sentence, then one would take a look at the sentiment score contained in the \verb|compound_score|.
-		\item [4.] Generally, the last clause of a sentence is the most impactful. You can try to compute the \verb|compound_score| of the example provided in question 2, and then, rearrange the sentence in order to have the last clause at the first position within the sentence, and the first clause at the last (i.e. "The pizza was soooo tasty and worth the wait, but the waitress was seemed to be under a lot of stress and the pizza arrived quiet late.") Observe attentively how much of a difference the position of a clause can make!
-		\item [5.] vaderSentiment works best at the sentence level. It can be use to compute the sentiment of a whole document, or just a word, but it will not be as accurate, as when it is done at the sentence level.
+		\item [4.] Generally, the last clause of a sentence is the most impactful. You can try to compute the \verb|compound_score| of the example provided in question 2, and then, rearrange the sentence in order to have the last clause at the first position within the sentence, and the first clause at the last (i.e. "The pizza was soooo tasty and worth the wait, but the waitress was seemed to be under a lot of stress and the pizza arrived quite late.") Observe attentively how much of a difference the position of a clause can make!
+		\item [5.] vaderSentiment works best at the sentence level. It can be used to compute the sentiment of a whole document, or just a word, but it will not be as accurate, as when it is done at the sentence level.
 	\end{itemize}
 	
 	\begin{glossy}
@@ -318,8 +307,8 @@ categorized_texts
 		\item [token] The smallest entity that can be subject of a sentiment analysis; it can be an emoticon, a word or an abbreviation.
 		\item [bigram] A pair of tokens conveying meaning together.
 		\item [trigram] A set of three tokens conveying meaning together.
-		\item [user-generated-content] User-generated content, also more commonly abbreviated UGC, is the content that is published on the web, by users. It could be Facebook posts, Reddit comment, Instagram pictures, Youtube videos and so on. The vast majority of sentiment analysis deals with textual data.
+		\item [user-generated-content] User-generated content, also more commonly abbreviated UGC, is the content that is published on the web, by users. It could be Facebook posts, Reddit comment, Instagram pictures, YouTube videos and so on. The vast majority of sentiment analysis deals with textual data.
 		\item [valence] Valence describes the intensity of a sentiment. Saying that VADER is a valence-aware dictionary means that it is able, not only to determine if a sentiment is either positive, negative or neutral, but also how much positive, negative or neutral the sentiment is, i.e. how intense is the assessed sentiment.
-		\item [Web 2.0] the Web 2.0 is the new generation of Web, where the users is not a mere consumer of web-content, but can and is encouraged to contriubte content to the plaftorms that they use (Wikipedia, Facebook, Twitter, TripAdvisor, etc ...).
+		\item [Web 2.0] the Web 2.0 is the new generation of Web, where the users are not a mere consumer of web-content, but can and is encouraged to contribute content to the platforms that they use (Wikipedia, Facebook, Twitter, TripAdvisor, etc ...).
 	\end{glossy}
 	

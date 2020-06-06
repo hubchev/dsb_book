@@ -33,4 +33,4 @@
 \contentsline {section}{\numberline {4.5}Conclusion}{22}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Exercises}{23}{section.4.6}%
 \contentsline {section}{\numberline {4.7}Test Questions}{24}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Glossary}{26}{section.4.8}%
+\contentsline {section}{\numberline {4.8}Glossary}{25}{section.4.8}%
