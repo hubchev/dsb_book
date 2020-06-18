@@ -22,15 +22,27 @@
 \contentsline {section}{\numberline {3.1}\LaTeX }{10}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Git and GitHub}{11}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Style of Writing}{11}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Sentiment analysis}{12}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Topic 1}{12}{chapter.4}%
+\vskip -10pt
+\contentsline {chapter}{\hskip 1.3em\mdseries \scshape \scriptsize Student \\ student@email.de}{}{}
+\vskip 5pt
+\contentsline {section}{\numberline {4.1}Motivation}{12}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Methodological Issues}{12}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Applications in R}{12}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Example(s) From the Real World}{12}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Conclusion}{12}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Exercises}{12}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Test Questions}{13}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Glossary}{13}{section.4.8}%
+\contentsline {chapter}{\numberline {5}Dictionary-based sentiment analysis}{14}{chapter.5}%
 \vskip -10pt
 \contentsline {chapter}{\hskip 1.3em\mdseries \scshape \scriptsize Ryan Zidago \\ \href {mailto:zidago.ryan@hs-fresenius.de}{zidago.ryan@hs-fresenius.de}}{}{}
 \vskip 5pt
-\contentsline {section}{\numberline {4.1}Motivation}{13}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Methodological Issues}{14}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Application in Python}{16}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Example(s) From the Real World}{23}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Conclusion}{24}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Exercises}{25}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Test Questions}{26}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Glossary}{27}{section.4.8}%
+\contentsline {section}{\numberline {5.1}Motivation}{15}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Methodological Issues}{16}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Application in Python}{17}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Example(s) From the Real World}{23}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Conclusion}{24}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Exercises}{25}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Test Questions}{26}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Glossary}{28}{section.5.8}%
