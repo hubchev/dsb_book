@@ -34,15 +34,27 @@
 \contentsline {section}{\numberline {4.6}Exercises}{12}{section.4.6}%
 \contentsline {section}{\numberline {4.7}Test Questions}{13}{section.4.7}%
 \contentsline {section}{\numberline {4.8}Glossary}{13}{section.4.8}%
-\contentsline {chapter}{\numberline {5}Dictionary-based sentiment analysis}{14}{chapter.5}%
+\contentsline {chapter}{\numberline {5}Sentiment analysis}{14}{chapter.5}%
 \vskip -10pt
 \contentsline {chapter}{\hskip 1.3em\mdseries \scshape \scriptsize Ryan Zidago \\ \href {mailto:zidago.ryan@hs-fresenius.de}{zidago.ryan@hs-fresenius.de}}{}{}
 \vskip 5pt
 \contentsline {section}{\numberline {5.1}Motivation}{15}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Methodological Issues}{16}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Application in Python}{17}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Example(s) From the Real World}{23}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Conclusion}{24}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Exercises}{25}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Test Questions}{26}{section.5.7}%
-\contentsline {section}{\numberline {5.8}Glossary}{28}{section.5.8}%
+\contentsline {section}{\numberline {5.3}Application in Python}{18}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Example(s) From the Real World}{25}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Conclusion}{26}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Exercises}{27}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Test Questions}{28}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Glossary}{29}{section.5.8}%
+\contentsline {chapter}{\numberline {6}This is my title}{31}{chapter.6}%
+\vskip -10pt
+\contentsline {chapter}{\hskip 1.3em\mdseries \scshape \scriptsize My Name \\ myname@email.de}{}{}
+\vskip 5pt
+\contentsline {section}{\numberline {6.1}Motivation}{31}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Methodological Issues}{31}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Applications in R}{31}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Example(s) From the Real World}{32}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Conclusion}{32}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Exercises}{32}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Test Questions}{32}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Glossary}{32}{section.6.8}%

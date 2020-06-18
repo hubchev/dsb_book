@@ -1,11 +1,11 @@
-This is BibTeX, Version 0.99d (TeX Live 2019/dev/Debian)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: aer.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: lit.bib
-I was expecting a `,' or a `}'---line 51 of file lit.bib
+I was expecting a `,' or a `}'---line 63 of file lit.bib
  : 
  : @article{oconnor_managing_2010,
 (Error may have been on previous line)
@@ -17,45 +17,45 @@ Warning--empty journal in hutto_vader_2014
 Warning--empty journal in oconnor_managing_2010
 Warning--empty journal in vidya_twitter_2015
 Warning--empty journal in xiang_what_2015
-You've used 11 entries,
+You've used 12 entries,
             2984 wiz_defined-function locations,
-            713 strings with 6229 characters,
-and the built_in function-call counts, 10185 in all, are:
-= -- 1459
-> -- 670
-< -- 165
-+ -- 226
-- -- 130
-* -- 707
-:= -- 2240
-add.period$ -- 11
-call.type$ -- 11
-change.case$ -- 77
-chr.to.int$ -- 11
-cite$ -- 18
-duplicate$ -- 153
-empty$ -- 317
-format.name$ -- 322
-if$ -- 2471
+            721 strings with 6443 characters,
+and the built_in function-call counts, 11115 in all, are:
+= -- 1612
+> -- 717
+< -- 179
++ -- 240
+- -- 138
+* -- 770
+:= -- 2442
+add.period$ -- 12
+call.type$ -- 12
+change.case$ -- 84
+chr.to.int$ -- 12
+cite$ -- 19
+duplicate$ -- 164
+empty$ -- 348
+format.name$ -- 348
+if$ -- 2703
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 11
-newline$ -- 39
-num.names$ -- 134
-pop$ -- 179
+missing$ -- 12
+newline$ -- 42
+num.names$ -- 146
+pop$ -- 194
 preamble$ -- 1
-purify$ -- 88
+purify$ -- 96
 quote$ -- 0
 skip$ -- 0
 stack$ -- 0
-substring$ -- 334
-swap$ -- 57
+substring$ -- 376
+swap$ -- 61
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 42
+type$ -- 46
 warning$ -- 7
-while$ -- 131
+while$ -- 143
 width$ -- 0
-write$ -- 173
+write$ -- 190
 (There was 1 error message)
