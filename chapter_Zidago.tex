@@ -1,65 +1,66 @@
-	\chapter{Dictionary-based sentiment analysis}\label{ch:topic1}
+	\chapter{Sentiment analysis}\label{ch:topic1}
 	\chapterauthor{Ryan Zidago \\ \href{mailto:zidago.ryan@hs-fresenius.de}{zidago.ryan@hs-fresenius.de}}
-	
+
 	\begin{abstract}
 		Sentiment analysis has seen a growing interest in the last few years in data science, particularly due to user-generated content (UGC) becoming more ubiquitous than ever on the modern Web 2.0. As such, companies look out for efficient ways to leverage vast amounts of UGC to asses their reputation, as well as improving their current products and services, based on continuous online customer feedback. One way to proceed is by the mean of sentiment analysis, a subset of text mining mostly concerned with sentiments and opinions that are contained in texts. In the following chapter, the reader will be introduced to one of the most practical ways to conduct such an analysis, namely the dictionary-based approach.
 	\end{abstract}
-	
+
 	\begin{goals}
-		\item having a basic understanding of sentiment analysis and its real-world application
-		\item understanding the different approaches to sentiment analysis and their trade-offs
-		\item knowing how to navigate the open-source ecosystem to find flaws or information in external software dependencies
-		\item conducting simple dictionary-based sentiment analysis in an independent manner with the aid of the Python programming language and the vaderSentiment library
-		\item critically reflect on the produced work and assess its limitations as well as its possibilities for further improvement
+		\item You will get a basic understanding of sentiment analysis and its real-world application
+		\item You will understand the different approaches to sentiment analysis and their trade-offs
+		\item You will learn how to navigate the open-source ecosystem to find flaws or information in external software dependencies
+		\item You will conduct simple dictionary-based sentiment analysis in an independent manner with the aid of the Python programming language and the vaderSentiment library
+		\item You will critically reflect on the produced work and assess its limitations as well as its possibilities for further improvement
 	\end{goals}
-	
+
 	\section{Motivation}
 	Natural languages (like English, German or French), are highly complex constructs. Humans are efficient at dealing with ambiguity and interpret irony, sarcasm, humor, figure of speech, double meaning, implicitness, innuendos and so forth. Machines are best at following a set of predefined rules, executing repetitive tasks concurrently and at a great pace, during long period of time.
-	
+
 	Sentiment analysis is at the crossroad between humans and machines; it leverages both of them to figure out what humans really mean when they voice their opinions, concern or appreciations on the public sphere that is the Internet. On one side, we have humans that built dictionaries full of tokens and their associated sentiment, as interpreted by themselves, and on the other side, we have machines that can compute the sentiment of millions of texts in a comparatively to human, extremely short amount of time.
-	
+
 	There are numerous applications to sentiment analysis: it is widely used in marketing, to better understand how consumer describe their experiences online (\citealp{xiang_what_2015}), to asses corporate reputation (\citealp{oconnor_managing_2010}, \citealp{vidya_twitter_2015}, \citealp{chung_evolution_2019}), but also in finance, as a mean to predict stock market movements (\citealp{mohan_stock_2019}) and in health care to understand the current mental health of forum users (\citealp{davcheva_user_2019}).
-	
-	By the end of this chapter, the reader will have a firm understanding of sentiment analysis, the different approaches used, and how to compute sentiment of textual data, with the intent to extract relevant information for decision making and solving real-world complex business problems.
-	
+
+	By the end of this chapter, the reader will have a firm understanding of sentiment analysis, the different approaches used, and how to compute sentiment of textual data, with the intent to extract relevant information for decision-making and solving real-world complex business problems.
+
 	In the \textbf{Methodological Issues} section, we will be introduced to sentiment analysis, what are sentiments, as well as the different approaches to extract sentiment. In the \textbf{Application in Python} section, we will create a program to compute sentiment out of online travel reviews. In the \textbf{Example from the Real World} section, the reader will be introduced to one of the application of sentiment analysis in the business world: understanding hotel guest experience and satisfaction. Finally, exercises (with their respective solutions) will be made available to the reader.
 	\section{Methodological Issues}
 
-	What is sentiment analysis?
-	Sentiment analysis is the study of sentiments and opinions that are contained in text. According to \cite{hutto_vader_2014} \citep{hutto_vader_2014}, "sentiment analysis, or opinion mining, is an active area of study in the field of natural language processing that analyzes people's opinions, sentiments, evaluations, attitudes, and emotions via the computational treatment of subjectivity in text".
-	
-	What is a sentiment? How does it relates to a sentence?
-	
-	In the context of sentiment analysis, a sentiment can be either positive, negative or neutral.To have a better understanding of how a sentiment relates to a sentence, let us consider the following examples and guess the sentiment they convey:
+	Sentiment analysis is the study of sentiments and opinions that are contained in text. According to \citep{hutto_vader_2014}, ``sentiment analysis, or opinion mining, is an active area of study in the field of natural language processing that analyzes people's opinions, sentiments, evaluations, attitudes, and emotions via the computational treatment of subjectivity in text''.
+
+	In the context of sentiment analysis, a sentiment is an evaluation towards a word, a sentence, a paragraph etc. that can be categorized as either positive, negative or neutral. To have a better understanding of how a sentiment relates to a sentence, let us consider the following examples and guess the sentiment they convey:
 	\begin{enumerate}
-	\item[(1)] "I love this hotel, the staff is always helpful!"
-	\item[(2)] "This restaurant mainly offers African food."
-	\item[(3)] "I hate this fitness studio, it is always crowded!"
+	\item[(1)] ``I love this hotel, the staff is always helpful!''
+	\item[(2)] ``This restaurant mainly offers African food.''
+	\item[(3)] ``I hate this fitness studio, it is always crowded''
 	\end{enumerate}
 
-	Here, in sentence (1), there is a positive meaning, the author states its subjective opinion, carrying a positive sentiment, towards the hotel and its staff. In example (2), the sentence carries a neutral sentiment; it is just a plain objective fact, devoided of subjectivity and assessment, towards what type of food the restaurant offers. Finally, in the last example (3), it become pretty obvious that the sentiment of the text is negative, the fitness studio is describe in bad term "always crowded", and the author states a negative opinion towards the studio "I hate this fitness studio".
-	
-	What is VADER?
-	
-	\href{https://github.com/cjhutto/vaderSentiment}{VADER} is a sentiment dictionary. In contrast to a normal dictionary, like the Merriam-Webster, a sentiment dictionary does not map a word to its definition or its meaning, but rather, to its sentiment.
-	VADER stands for Valence Aware Dictionary and sEntiment Reasoner, and is purposefully built for social media user-generated content in the form of text (Facebook posts, Reddit comments, Twitter's tweets, etc ...). Another key selling point of the VADER dictionary is its ability to detect the valence of a sentiment: the dictionary registers the intensity of the assessed lexical feature. For instance, the word "good" is evaluated to have a compound score of 0.4404, while the words "great" and "best" have respectively a score of 0.6249 and 0.6369. Here, one can clearly observe that, as the intensity of the word increases, its given compound score also further increases too.\newline
-	
-	How was the VADER dictionary built? How did they decided which word is worthy to be included in the dictionary and which are not? How did they figure out the exact compound score for each lexical features?
-	
-	Firstly, the researchers extracted lexical features that were already present in some of the most popular sentiment dictionaries, such as the \href{https://wjh.harvard.edu/~inquirer/}{General Inquirer} or \href{https://csea.phhp.ufl.edu/media.html#bottommedia}{ANEW}. Then, they added other lexical feature that are frequently used in the context of social media text, like emoticons, acronyms and slang. Indeed, one of the selling point of the VADER dictionary is that it is particularly well-suited for social media content. Emoticons too convey sentiment and therefore, are relevant enough to also be included in the dictionary.
-	
-	Then, they used \href{https://en.wikipedia.org/wiki/Wisdom_of_the_crowd}{wisdom-of-the-crowd} to asses the sentiment of each lexical feature, and only kept those for which there was a large consensus; which resulted in more than 7500 assessed lexical features.
-	
-	In the next chapter's section, we will get some practical experience by exploring a dataset of \href{https://www.tripadvisor.com/}{TripAdvisor}'s online travel reviews using the dictionary-based approach to sentiment analysis with the vaderSentiment software.
+	Here, in sentence (1), there is a positive meaning, the author states its subjective opinion, carrying a positive sentiment, towards the hotel and its staff. In example (2), the sentence carries a neutral sentiment; it is just a plain objective fact, without subjectivity and assessment, towards what type of food the restaurant offers. Finally, in the last example (3), it becomes pretty obvious that the sentiment of the text is negative, the fitness studio is described in bad term ``always crowded'', and the author states a negative opinion towards the studio ``I hate this fitness studio''.
+
+	As the reader has probably noticed, it is rather easy for us, humans, to infer the sentiment of a sentence, as we have been trained to understand human languages since the very first day we were born. However, the approache that we used (i.e. sequentially reading sentences and inferring their sentiments) is not really scalable. What if we needed to infer the sentiment of millions of sentences in a short amount of time? We would need lots of competent humans. This seems like a resource intensive task, and there are probably tools to help us: computers! We could define a set of rules that the machine would follow in order to infer sentiment from text. Machines can even compute several tasks concurrently and usually works faster than humans. Therefore, the subsequent question that might arise in your mind is \emph{How to compute the sentiment of textual data?}
+
+	There are two main approaches used to compute the sentiment of textual data: the first approach that I would like to introduce you to, is the non-lexical approach, it uses machine learning. This approach uses labeled training data. Data, mostly words or sentences, even whole paragraphs, are labeled as either having a positive, neutral or negative sentiment. Once the data has been properly labeled, it is then given as input to the machine learning model to train it. Only after it has been trained can the machine learning model be fed the real use-case unlabeled data for which one wishes to know the sentiment orientation.
+
+	The second approach to conducting a sentiment analysis, is by means of a so-called sentiment dictionary. In contrast to a normal dictionary, like the Merriam-Webster, a sentiment dictionary is conventionally a small text file database, that does not map a word to its definition or its meaning, but rather, to its sentiment score, which usually lies between -1 and +1, where -1 denotes an extremely negative sentiment while +1 refers to a highly positive sentiment, and 0 a totally neutral statement.
+
+	There are numerous non-proprietary dictionaries available on the Web such as SentiWordNet\footnote{\href{http://sentiwordnet.isti.cnr.it}{http://sentiwordnet.isti.cnr.it/}}, General-Inquirer\footnote{\href{https://wjh.harvard.edu/~inquirer/}{https://wjh.harvard.edu/~inquirer/}}, ANEW\footnote{\href{https://csea.phhp.ufl.edu/media.html}{https://csea.phhp.ufl.edu/media.html}}, VADER\footnote{\href{https://github.com/cjhutto/vaderSentiment}{https://github.com/cjhutto/vaderSentiment}}. In this chapter, we will solely focus on the VADER dictionary as it is one of the most practical to use. Also, it was purposefully constructed for social media content, which is more often than not, the main source of textual data in a sentiment analysis context.
+
+	As explained by \cite{hutto_vader_2014}, dictionary-based sentiment analysis also has its advantages over the use of a machine-learning model. In contrast to a machine learning approach, the dictionary approach does not require extensive use of training data (it does however, require, obviously a dictionary); also this approach is not computationally expensive in terms of CPU processing, memory requirements and training/classification time. Machine learning model can demand a lot from a computer, hence the rise of cloud-based machine learning model. Nonetheless, those models are not free and if one does not pay attention carefully, at the end of the day, the bill might be salty. One other advantage of dictionary-based sentiment analysis, is that it is easier to extend: one just needs to add the token and its given sentiment score to the dictionary, and the newly updated dictionary will be immediately ready to be used in production. In contrast, with the machine learning approach, there is a necessity to update the training data by labeling new records, then the updated training data needs once again to be given as input to the model, the model needs to classify the data, and the real use-case data can then be fed to the newly updated model. Labeling data and classifying it requires some time and other resources.
+
+	We will not develop any further on the machine learning approach, but if the reader is curious, \cite{xiang_sentiment_2013} provides a good overview of the different ways (including several machine learning methods), to compute sentiment of textual data.
+
+	VADER is a sentiment dictionary. VADER stands for Valence Aware Dictionary and sEntiment Reasoner, and is purposefully built for social media user-generated content in the form of text (Facebook posts, Reddit comments, Twitter's tweets, etc ...). Another key selling point of the VADER dictionary is its ability to detect the valence of a sentiment: the dictionary registers the intensity of the assessed lexical feature. For instance, the word ``good'' is evaluated to have a compound score of 0.4404, while the words ``great'' and ``best'' have respectively a score of 0.6249 and 0.6369. Here, one can clearly observe that, as the intensity of the word increases, its given compound score also further increases too.
+
+	In order to built the dictionary, the researchers extracted lexical features that were already present in some of the most popular sentiment dictionaries, such as the General Inquirer or ANEW. Then, they added other lexical feature that are frequently used in the context of social media text, like emoticons, acronyms and slang. Indeed, another selling point of the VADER dictionary is that it is particularly well-suited for social media content. Emoticons convey sentiment and therefore, are relevant enough to also be included in the dictionary.
+
+	Then, they used wisdom-of-the-crowd to asses the sentiment of each lexical feature, and only kept those for which there was a large consensus; which resulted in more than 7500 assessed lexical features.
+
+	In the next chapter's section, we will get some practical experience by exploring a dataset of TripAdvisor's\footnote{\href{https://www.tripadvisor.com/}{https://www.tripadvisor.com/}} online travel reviews using the dictionary-based approach to sentiment analysis with the vaderSentiment software.
 	\section{Application in Python}\label{sec:applicationsinR}
-	For this section, we will use 
-%	\href{https://www.python.org/}{Python3.8}, 
-	Python3.8 (see: \url{https://www.python.org/})
-	the latest stable realase currently available at the time of writing, as well as \href{https://github.com/cjhutto/vaderSentiment}{vaderSentiment}, an open-source Python library that provides a simple interface to the VADER sentiment dictionary. Python is a popular general purpose programming language, widely use in web development and scientific computing, including data science. Its syntax is easy to understand and there are plenty of resources freely available on the Web. It is highly recommended that the reader has some familiarity with the Python programming language, as well as with the \href{https://pandas.pydata.org/}{Pandas} package. Those two tools are used a lot in data science, therefore, it is always worth it to invest some time and learn them. For this exercise, there is no need to install either Python or vaderSentiment; a sandboxed environment is provided at \href{https://labs.play-with-docker.com/#}{labs.play-with-docker.com/}. Click on the green \verb#Start# button, then click the \verb# + ADD NEW INSTANCE# on the left panel, and then run the following command in the terminal (the black screen), omitting the \verb#$# sign (a convention to denote that a command should be executed in a terminal): 
+	For this section, we will use Python3.8\footnote{\href{https://www.python.org/}{https://www.python.org/}}, the latest stable realase currently available at the time of writing, as well as vaderSentiment\footnote{\href{https://github.com/cjhutto/vaderSentiment}{https://github.com/cjhutto/vaderSentiment}}, an open-source Python library that provides a simple interface to the VADER sentiment dictionary. Python is a popular general purpose programming language, widely use in web development and scientific computing, including data science. Its syntax is easy to understand and there are plenty of resources freely available on the Web. It is highly recommended that the reader has some familiarity with the Python programming language, as well as with the Pandas\footnote{\href{https://pandas.pydata.org/}{https://pandas.pydata.org/}} package. Those two tools are used a lot in data science, therefore, it is always worth it to invest some time and learn them. For this exercise, there is no need to install either Python or vaderSentiment; a sandboxed environment is provided at labs.play-with-docker.com/\footnote{\href{https://labs.play-with-docker.com/}{https://labs.play-with-docker.com/}}. Click on the green \verb#Start# button, then click the \verb# + ADD NEW INSTANCE# on the left panel, and then run the following command in the terminal (the black screen), omitting the \verb#$# sign (a convention to denote that a command should be executed in a terminal):
 	\begin{Verbatim}
 $ docker pull ryanzidago/sentiment-analysis
 	\end{Verbatim}
-	It will download all of the software needed for our hands-on exercise. Once the download is complete, execute the following command:
+	It will download all the software needed for our hands-on exercise. Once the download is complete, execute the following command:
 	\begin{Verbatim}
 $ docker run --rm -it ryanzidago/sentiment-analysis
 	\end{Verbatim}
@@ -67,9 +68,9 @@ $ docker run --rm -it ryanzidago/sentiment-analysis
 	\begin{Verbatim}
 fresenius-student@eb62d59a71bd:~/sentiment-analysis$
 	\end{Verbatim}
-	
-	It looks like you are all set, if not, re-read the different steps carefully, you probably might have missed something trivial. Since we will be using the vaderSentiment Python package, the reader is strongly advised to go through the \href{https://github.com/cjhutto/vaderSentiment#vader-sentiment-analysis}{README} of the library and familiarize themselve with the software. If at any time, you feel lost, you can always fallback to the code for this actual section on \href{https://gist.github.com/ryanzidago/5440bcd66be55ba23ca9b55cf336bab6}{GitHub}.
-	
+
+	It looks like you are all set, if not, re-read the different steps carefully, you probably might have missed something trivial. Since we will be using the vaderSentiment Python package, the reader is strongly advised to go through the README\footnote{\href{https://github.com/cjhutto/vaderSentiment}{https://github.com/cjhutto/vaderSentiment}} of the library and familiarize themselve with the software. If at any time, you feel lost, you can always fallback to the code for this actual section on GitHub\footnote{\href{https://gist.github.com/ryanzidago/5440bcd66be55ba23ca9b55cf336bab6}{https://gist.github.com/ryanzidago/5440bcd66be55ba23ca9b55cf336bab6}}.
+
 	First, execute the following command to activate the Python shell:
 	\begin{Verbatim}
 $ python3.8
@@ -81,7 +82,7 @@ analyzer = SentimentIntensityAnalyzer()
 	\end{Verbatim}
 Now that we have correctly imported the module and saved his name to a variable, we can start using its \verb|polarity_scores()| function to infer the sentiment of a sentence:
 	\begin{Verbatim}
-sentence = """Best breakfast I have ever had, 
+sentence = """Best breakfast I have ever had,
 but it was way too expensive and the staff was rude and impatient!"""
 analyzer.polarity_scores(sentence)
 	\end{Verbatim}
@@ -89,35 +90,35 @@ analyzer.polarity_scores(sentence)
 \begin{Verbatim}
 # => {'neg': 0.276, 'neu': 0.623, 'pos': 0.101, 'compound': -0.6696}
 \end{Verbatim}
-	vaderSentiment is able to recognizes the different sentiments contained in a sentence. \verb|neg| stands for negative, \verb|neu| for neutral and \verb|pos| for positive. Such as in our example, a sentence can carry various sentiment, even opposite ones. That is why there is a \verb|neg| score of 0.276 and a \verb|pos| of 0.101. The first clause ("Best breakfast I have ever had") conveys a positive sentiment while the last one ("but it was way too expensive and the staff was rude and impatient!") a negative one. If, however, one wishes to know the overall sentiment for the whole sentence, then one should look at the \verb|compound_score|. Again, in our example, the sentence is negative, hence the \verb|compound_score| is negative too. According to the library's \href{https://github.com/cjhutto/vaderSentiment#about-the-scoring}{README}, the following scoring can be adopted to interpret the text's \verb|compound_score|: 
-	
+	vaderSentiment is able to recognizes the different sentiments contained in a sentence. \verb|neg| stands for negative, \verb|neu| for neutral and \verb|pos| for positive. Such as in our example, a sentence can carry various sentiment, even opposite ones. That is why there is a \verb|neg| score of 0.276 and a \verb|pos| of 0.101. The first clause (``Best breakfast I have ever had'') conveys a positive sentiment while the last one (``but it was way too expensive and the staff was rude and impatient!'') a negative one. If, however, one wishes to know the overall sentiment for the whole sentence, then one should look at the \verb|compound_score|. Again, in our example, the sentence is negative, hence the \verb|compound_score| is negative too. According to the library's \href{https://github.com/cjhutto/vaderSentiment#about-the-scoring}{README}, the following scoring can be adopted to interpret the text's \verb|compound_score|:
+
 	\begin{enumerate}
 		\item [] positive: \verb|compound_score| >= 0.05
 		\item [] neutral: \verb|compound_score| > -0.05 and \verb|compound_score| < 0.05
 		\item [] negative: \verb|compound_score| <= 0.05
 	\end{enumerate}
 
-	Another key selling-point of vaderSentiment, is that it is able to factor in the intensity of the expressed sentiment based on punctuation. Replace the exclamation mark in the sentence from the previous example with a dot. You will get a milder score:
+	vaderSentiment is able to factor-in the intensity of the expressed sentiment based on punctuation. Replace the exclamation mark in the sentence from the previous example with a dot. You will get a milder score:
 	\begin{verbatim}
-sentence = """Best breakfast I have ever had, 
+sentence = """Best breakfast I have ever had,
 but it was way too expensive and the staff was rude and impatient."""
 analyzer.polarity_scores(sentence)
 # => {'neg': 0.268, 'neu': 0.63, 'pos': 0.102, 'compound': -0.6369}
 	\end{verbatim}
-	As you can see, the \verb|compound_score| is equal to -0.6369 while with the exclamation mark, it was equal to -0.6696. Feel free to add more exclamation marks and observe how it influences the actual sentence's sentiment intensity. Then, upercase all letter of a high-sentiment word, for example, try the following sentence: 
+	As you can see, the \verb|compound_score| is equal to -0.6369 while with the exclamation mark, it was equal to -0.6696. Feel free to add more exclamation marks and observe how it influences the actual sentence's sentiment intensity. Then, uppercase all letter of a high-sentiment word, for example, try the following sentence:
 	\begin{Verbatim}
-sentence = """BEST breakfast I have ever had, 
+sentence = """BEST breakfast I have ever had,
 but it was way to EXPENSIVE and the staff was RUDE and IMPATIENT!"""
 analyzer.polarity_scores(sentence)
 # => {'neg': 0.329, 'neu': 0.566, 'pos': 0.105, 'compound': -0.8087}
 	\end{Verbatim}
 	Notice how the sentiment's sentence is of greater intensity compared to our previous examples.
-	
+
 	Within the sandboxed environment is a csv file containing real-world reviews from TripAdvisor. Let us explore the dataset, mine some data out of it. First, import the panda library then create a dataframe from the csv file, and finally print out the dataframe's columns to familiarize yourself with the dataset:
 	\begin{Verbatim}
 import pandas
 review_dataframe = pandas.read_csv(
-'assets/le_meridien_picadilly.csv', 
+'assets/le_meridien_picadilly.csv',
 parse_dates=['created_date', 'stay_date']
 )
 print(review_dataframe.keys())
@@ -153,35 +154,35 @@ photo_counts                                                             4
 	The most important observations here are the \verb|text|, which represents the actual text of the review, as well as the \verb|rating|, which represents the actual score given by the reviewer to the hotel. Let's print out the actual text of the review, and try to infer its sentiment with our intuition alone:
 	\begin{Verbatim}
 print(first_review['text'])
-# => I was taken here for a birthday treat 
-and we were very disappointed with the room, 
-despite being a Junior Suite 
-it was close to being the most depressing room I’ve ever stayed in. 
-It was dark and tired 
-and we complained and were moved to another room, 
-only slightly better, very disappointed. 
+# => I was taken here for a birthday treat
+and we were very disappointed with the room,
+despite being a Junior Suite
+it was close to being the most depressing room I’ve ever stayed in.
+It was dark and tired
+and we complained and were moved to another room,
+only slightly better, very disappointed.
 
-The bathroom was tired 
-and not sure why the bar of soap was replaced every day, 
-seems a waste of money and bad for the environment. 
+The bathroom was tired
+and not sure why the bar of soap was replaced every day,
+seems a waste of money and bad for the environment.
 
-The air conditioning was not great, 
-I would hate to be in the room on a warm day, 
-luckily we were there in March so we managed. 
+The air conditioning was not great,
+I would hate to be in the room on a warm day,
+luckily we were there in March so we managed.
 
-We had access to the Club Lounge which was nice and the staff attentive, 
-a nice place to relax after a day out in London. 
+We had access to the Club Lounge which was nice and the staff attentive,
+a nice place to relax after a day out in London.
 
-Breakfast was nice, 
-very extensive but the food started being removed very soon after the end time 
-so you need to be down for breakfast well before the cut off time. 
+Breakfast was nice,
+very extensive but the food started being removed very soon after the end time
+so you need to be down for breakfast well before the cut off time.
 
-The gym and pool area was quite good for a hotel. 
+The gym and pool area was quite good for a hotel.
 
-The younger doorman was very good, 
-the older one less so, more interested in gossiping with the staff. 
+The younger doorman was very good,
+the older one less so, more interested in gossiping with the staff.
 
-Great location but that doesn’t compensate for the tired building, 
+Great location but that doesn’t compensate for the tired building,
 sadly we will not be returning.
 	\end{Verbatim}
 	Obviously, this review carries a quite negative sentiment! But what does the vaderSentiment tells us?
@@ -189,14 +190,14 @@ sadly we will not be returning.
 analyzer.polarity_scores(first_review['text'])
 # => {'neg': 0.144, 'neu': 0.715, 'pos': 0.141, 'compound': 0.3172}
 	\end{Verbatim}
-	Surprisingly, it informed us, that the review is positive (\verb|compound_score| >= 0.05). Maybe the library is not working as expected? As mentioned in \href{https://github.com/cjhutto/vaderSentiment/blob/master/vaderSentiment/vaderSentiment.py#L600}{vaderSentiment's source code}, the software works best at the sentence level. In the previous example, we fed the whole paragraph to the \verb|polarity_scores()| function. To resolve this issue, we can chunk the paragraph into sentences:
+	Surprisingly, it informed us, that the review is positive (\verb|compound_score| >= 0.05). Maybe the library is not working as expected? As mentioned in \href{https://github.com/cjhutto/vaderSentiment/blob/master/vaderSentiment/vaderSentiment.py#L600}{vaderSentiment's source code}, the software works best at the sentence level.  As such, before diving deeply in a data science project it is advised to carefully inspect the source code of the project's external dependencies: there might be valuable information that might save you quit a lot of time and headaches. It is always preferable to find those information while the project is at its infancy stage. In the previous example, we fed the whole paragraph to the \verb|polarity_scores()| function. To resolve this issue, we can chunk the paragraph into sentences:
 	\begin{Verbatim}
 review_text = first_review['text']
 sentences = review_text.split(".")
 # for every sentence in sentences, compute the polarity_scores()
-compound_scores = 
+compound_scores =
 	map(
-		lambda sentence: analyzer.polarity_scores(sentence)['compound'], 
+		lambda sentence: analyzer.polarity_scores(sentence)['compound'],
 		sentences
 	   )
 	\end{Verbatim}
@@ -206,13 +207,13 @@ compound_score = sum(compound_scores)
 print(compound_score)
 # => -1.2965
 	\end{Verbatim}
-	The computed sentiment is more accurate than before. This was great, but certainly not enough. Let's compute the \verb|compound_scores| for each reviews in the dataset. To do that, we will need to organize our code into functions. The \verb|compute_compound_score()| function takes one argument, the \verb|text| of the review, that is then splitted into sentences. Finally, the function calculcates each \verb|compound_scores| for each \verb|sentences|; sums all \verb|compound_scores| and returns the \verb|compound_score| of the whole review text paragraph:
+	The computed sentiment is more accurate than before. This was great, but certainly not enough. Let's compute the \verb|compound_scores| for each reviews in the dataset. To do that, we will need to organize our code into small reusable functions. The \verb|compute_compound_score()| function takes one argument, the \verb|text| of the review, that is then splitted into sentences. Finally, the function calculates each \verb|compound_scores| for each \verb|sentences|; sums all \verb|compound_scores| and returns the \verb|compound_score| of the whole review text paragraph:
 	\begin{Verbatim}
 def compute_compound_score(text):
 	sentence = text.split(".")
-	compound_scores = 
+	compound_scores =
 	map(
-		lambda sentence: analyzer.polarity_scores(sentence)['compound'], 
+		lambda sentence: analyzer.polarity_scores(sentence)['compound'],
 		sentences
 		)
 	compound_score = sum(compound_scores)
@@ -220,13 +221,13 @@ def compute_compound_score(text):
 	\end{Verbatim}
 	Now that we have created the \verb|compute_compound_score()| function, we can apply it to the entirety of the dataframe:
 	\begin{Verbatim}
-compound_scores = 
+compound_scores =
 [compute_compound_score(text) for text in review_dataframe['text']]
 review_dataframe['text_compound_score'] = compound_scores
 	\end{Verbatim}
 	Want to see the result? Try \verb|review_dataframe.iloc[100]| to see the 100th review. At the bottom of the printed message, you will see a new column \verb|text_compound_score| with the newly computed \verb|compound_score| for this review.
-	
-	This was great. Now, we could categorized each reviews into positive, negative or neutral reviews based on the \verb|compound_score| that we have just obtained. To do that, let us create another function:
+
+	This was great. Now, we could categorize each reviews into positive, negative or neutral reviews based on the \verb|compound_score| that we have just obtained. To do that, let us create another function:
 	\begin{Verbatim}
 def categorizes_based_on_text_compound_score(text):
 	compound_score = compute_compound_score(text)
@@ -240,89 +241,86 @@ def categorizes_based_on_text_compound_score(text):
 		print(f"POSITIVE: {compound_score} -> {text}\n")
 		return 'positive'
 	\end{Verbatim}
-	Here, for a given review text, we calculate the \verb|compound_score| with the help of the \verb|compute_compound_score()| function, then, we categorized the returned result as either positive, negative or neutral, based on the scoring annotations mentioned in vaderSentiment's README. As before, we need to apply the \verb|categorizes_based_on_text_compound_score()| function to the dataframe:
+	Here, for a given review text, we calculate the \verb|compound_score| with the help of the \verb|compute_compound_score()| function, then, we categorize the returned result as either positive, negative or neutral, based on the scoring annotations mentioned in vaderSentiment's README. As before, we need to apply the \verb|categorizes_based_on_text_compound_score()| function to the dataframe:
 	\begin{Verbatim}
 categorized_texts =
-[categorizes_based_on_text_compound_score(text) 
+[categorizes_based_on_text_compound_score(text)
 for text in review_dataframe['text']]
-review_dataframe['categorized_based_on_text_compound_score'] = 
+review_dataframe['categorized_based_on_text_compound_score'] =
 categorized_texts
 	\end{Verbatim}
-	Now, the reader should be able, all by themselve, to inspect the recently updated dataframe to verify if they correctly categorized each reviews.
-	
-	In the next section, the reader will be introducted to an example of a sentiment analysis project from the real world, where researchers studied the relationship between review rating and sentiment rating.
-	
-	\section{Example(s) From the Real World}\label{sec:examplerealworld-zidalgo}
-	\cite{geetha_relationship_2017} studied the relationship between customer sentiment and online ratings for hotels. They argue that, in order to improve the extremly competitive hotel industry, it is required to improve the understanding of its customers through reviews and ratings that they leave online.
-	
-	 Their main hypothesis is that customer sentiment polarity has a positive effect on customer rating. \cite{geetha_relationship_2017} used \href{https://en.wikipedia.org/wiki/Simple_random_sample}{Simple Random Sampling} to select 20 budget hotels and 20 premium hotels, all located in the municipality of Goa, India. To classify reviews as either positive, neutral or negative, they also used a dictionary-based approach. Before feeding the sentences to their own implementation of a sentiment software, they processed the reviews by removing punctuations, numbers, \href{https://en.wikipedia.org/wiki/Stop_words}{stopwords}, white spaces. They also converted all letters to lower case and \href{https://en.wikipedia.org/wiki/Stemming}{stemmed} every words in reviews.
-	
-	As our now experienced reader can notice, their approach has several limitations in comparison with the vaderSentiment library: it does not factor in punctuations, capsulation and emoticons. Hence, "worst ratatouille ever." will carry the same sentiment score as "WORST RATATOUILLE EVER!!! ):" eventhough it is obvious that the latter sentence is more intense than the former one.
-	
-	They found out that the most frequent words in both categories are quit the same ("hotel", "good", "room", "stay", "staff", etc.). The results of their study showcase a certain consistency between customer ratings and online travel review sentiments: the better the sentiment, the higher the rating. This also prove us that sentiment analysis is effective, otherwise there would be no correlation between review sentiment and review rating.
-	
+	Now, the reader should be able, all by themselves, to inspect the recently updated dataframe to verify if they correctly categorized each reviews.
+
+	In the next section, the reader will be introduced to an example of a sentiment analysis project from the real world, where researchers studied the relationship between review rating and sentiment rating.
+
+	\section{Example(s) From the Real World}\label{sec:examplerealworld}
+	\cite{geetha_relationship_2017} studied the relationship between customer sentiment and online ratings for hotels. They argue that, in order to improve the extremely competitive hotel industry, it is required to improve the understanding of its customers through reviews and ratings that they leave online.
+
+	Their main hypothesis is that customer sentiment polarity has a positive effect on customer rating. \cite{geetha_relationship_2017} used Simple Random Sampling to select 20 budget hotels and 20 premium hotels, all located in the municipality of Goa, India. To classify reviews as either positive, neutral or negative, they also used a dictionary-based approach. Before feeding the sentences to their own implementation of a sentiment software, they processed the reviews by removing punctuations, numbers, \href{https://en.wikipedia.org/wiki/Stop_words}{stopwords}, white spaces. They also converted all letters to lower case and \href{https://en.wikipedia.org/wiki/Stemming}{stemmed} every word in reviews.
+
+	They found out that the most frequent words in both categories are quit the same (``hotel'', ``good'', ``room'', ``stay'', ``staff'', etc.). The results of their study showcase a certain consistency between customer ratings and online travel review sentiments: the better the sentiment, the higher the rating. This also prove us that sentiment analysis is effective, otherwise there would be no correlation between review sentiment and review rating.
+
 	\cite{geetha_relationship_2017} also discovered that customers from budget hotel were more critical of the hotel where they stayed, with only 55 percent of all reviews having a positive sentiment, while customers from premium hotels were overly satisfied regarding their accommodation, with more than 70 percent positive reviews.
-	
-	With this valuable information, hotel managers can start to dig deeper to figure out why exactly budget customers aren't as satisfied as premium customers; it could be that budget hotels in Goa need to reasses their communication strategy by making clear from the very begining what the customers should expect. Since budget hotels offer by definition, minimal ameneties and services, hotel managers could probably increase customer satisfaction and loyalty by improving the way hotel staff interacts with its guests.
-	
+
+	With this valuable information, hotel managers can start to dig deeper to figure out why exactly budget customers aren't as satisfied as premium customers; it could be that budget hotels in Goa need to reassess their communication strategy by making clear from the very beginning what the customers should expect. Since budget hotels offer by definition, minimal amenities and services, hotel managers could probably increase customer satisfaction and loyalty by improving the way hotel staff interacts with its guests.
+
 	\section{Conclusion}
-	We have learn many things throughout this chapter. We now know that sentiment analysis is about the study of sentiments that are contained within texts. We know that a sentiment is an evaluation of a token, than is categorized as either positive, negative or neutral. We also learned that sentiment analysis is used in a lot of various fields, such as finance, marketing, health-care. We successfuly conducted a small sentiment analysis project, by reading data from a dataset, computing the \verb|compound_score| of some reviews, and categorizing reviews as either positive, negative or neutral. We have learned how to use the vaderSentiment Python library to help us in our analysis.
-	
+	We have learned many things throughout this chapter. We now know that sentiment analysis is about the study of sentiments that are contained within texts. We know that a sentiment is an evaluation of a token, that is categorized as either positive, negative or neutral. We also learned that sentiment analysis is used in a lot of various fields, such as finance, marketing, health-care. We successfully conducted a small sentiment analysis project, by reading data from a dataset, computing the \verb|compound_score| of some reviews, and categorizing reviews as either positive, negative or neutral. We have learned how to use the vaderSentiment Python library to help us in our analysis.
+
 	Obviously, this is not all there is to it. There are many more things to learn. If the reader wishes to further their understanding of the topic, they can freely learn from the following resources:
 	\begin{itemize}
-		\item \href{https://towardsdatascience.com/scraping-tripadvisor-text-mining-and-sentiment-analysis-for-hotel-reviews-cc4e20aef333}{Web Scraping TripAdvisor, Text Mining and Sentiment Analysis for Hotel Reviews}. This is an online tutorial for conducting a full sentiment-analysis project, from A to Z, from the blog \href{https://towardsdatascience.com/}{TowardsDataScience}, authored by Susan Li. Completing this more extensive and advanced tutorial would be a great step right after having finished reading and working on the current chapter.
-		\item \href{http://comp.social.gatech.edu/papers/icwsm14.vader.hutto.pdf}{VADER: A Parsimonous Rule-based Model for Sentiment Analysis for Social Media Text}: This is the actual research paper of the VADER dictionary. The authors explain why did they built VADER and how did they do it, how did they chose to include some words and some not, etc. This paper is very informative, especially regarding how to built a sentiment dictionary.
-		\item \href{https://www.cs.uic.edu/~liub/FBS/NLP-handbook-sentiment-analysis.pdf}{Sentiment Analysis and Subjectivity}. This is another research paper, authored by Bing Liu, from the University of Illinois at Chicago. In this paper, the author explain very well what is sentiment analysis and what are the challenges pertaining to it.
+		\item Web Scraping TripAdvisor, Text Mining and Sentiment Analysis for Hotel Reviews\footnote{\href{https://towardsdatascience.com/scraping-tripadvisor-text-mining-and-sentiment-analysis-for-hotel-reviews-cc4e20aef333}{https://towardsdatascience.com/scraping-tripadvisor-text-mining-and-sentiment-analysis-for-hotel-reviews-cc4e20aef333}}. This is an online tutorial for conducting a full sentiment-analysis project, from A to Z, from the blog TowardsDataScience\footnote{\href{https://towardsdatascience.com/}{https://towardsdatascience.com/}}, authored by Susan Li. Completing this more extensive and advanced tutorial would be a great step right after having finished reading and working on the current chapter.
+		\item VADER: A Parsimonous Rule-based Model for Sentiment Analysis for Social Media Text\footnote{\href{http://comp.social.gatech.edu/papers/icwsm14.vader.hutto.pdf}{http://comp.social.gatech.edu/papers/icwsm14.vader.hutto.pdf}}: This is the actual research paper of the VADER dictionary. The authors explain why did they built VADER and how did they do it, how did they chose to include some words and some not, etc. This paper is very informative, especially regarding how to build a sentiment dictionary.
+		\item Sentiment Analysis and Subjectivity\footnote{\href{https://www.cs.uic.edu/~liub/FBS/NLP-handbook-sentiment-analysis.pdf}{https://www.cs.uic.edu/~liub/FBS/NLP-handbook-sentiment-analysis.pdf}}. This is another research paper, authored by Bing Liu, from the University of Illinois at Chicago. In this paper, the author explain very well what is sentiment analysis and what are the challenges pertaining to it.
 	\end{itemize}
 
-	I hope that the reader enjoyed this chapter as much as I enjoyed writting it. Questions, remarks and improvement ideas can be sent to me by email. Next comes some exercises as well as test questions, to assess your newly acquired knowledge.
+	I hope that the reader enjoyed this chapter as much as I enjoyed writing it. Questions, remarks and improvement ideas can be sent to me by email. Next comes some exercises as well as test questions, to assess your newly acquired knowledge.
 
 	\section{Exercises}
-	After having successfully graduated from the Hochschule Fresenius, you have goten a position as a junior analyst at a prestigious consulting firm in London. Your manager wants to test you by handing out to you your first big project: helping a struggling hotel to understand their customer: the hotel director, Miss Smith, wishes to know why her customers are satisfied/dissatisfied in order to improve the offered services. She stated that the overall star ratings will not help her better emphatizes with her guests, because those same star ratings provide little context and actionable measures. Instead she wants to know what is hidden in the comment that her guests publish on online booking platforms.
-	
-	Your task here, is to pretter the work so that other more senior analyst could start to dig deeper in the data. 
-	
-	Within the sandboxed environment is another dataset containing travel reviews from TripAdvisor, for the Premier Inn London Kensington hotel. Your task is to
+	After having successfully graduated from the Hochschule Fresenius, you have gotten a position as a junior analyst at a prestigious consulting firm in London. Your manager wants to test you by handing out to you your first big project: helping a struggling hotel to understand their customer: the hotel director, Miss Smith, wishes to know why her customers are satisfied/dissatisfied in order to improve the offered services. She stated that the overall star ratings will not help her better emphasizes with her guests, because those same star ratings provide little context and actionable measures. Instead, she wants to know what is hidden in the comment that her guests publish on online booking platforms.
+
+	Within the sandboxed environment is another dataset containing travel reviews from TripAdvisor, for the Premier Inn London Kensington hotel. Your task is to:
 	\begin{itemize}
 		\item [1.] Find out the percentage (no decimals) of positive and non-negative reviews in the dataset. To proceed, you will need to categorize each reviews as either positive or non-positive reviews, based on the \verb|compound_score| result. This is the stepping-stone for further analysis; this task is crucial.
-		\item [2.] Compute the average \verb|compound_score| (3 decimals places) for the entirety of the reviews. She would like to use it as another metrics to assess the quality of the hotel services. 
+		\item [2.] Compute the average \verb|compound_score| (3 decimals places) for the entirety of the reviews. She would like to use it as another metrics to assess the quality of the hotel services.
 		\item [3.] Rank the most satisfied \verb|trip_type| (according to the \verb|compound_score|'s average for each traveler categories). She has decided that she would like to better market the hotel based on data-backed customer segmentation.
 	\end{itemize}
-	
+
 	Answers:
 	\begin{itemize}
 		\item [1.] 95\% of the hotel guests were satisfied by the hotel itself (consequently, only 5\% were not satisfied).
 		\item [2.] The average \verb|compound_score| is equal to 2.077.
 		\item [3.] The most satisfied \verb|trip_type| is the \verb|FRIENDS| trip category, with an average \verb|compound_score| equal to 2.209, followed by the \verb|FAMILY| trips with 2.163, then the \verb|COUPLES| with 2.061, and \verb|SOLO| trips with 1.944, and finally the \verb|BUSINESS| category with only 1.729.
 	\end{itemize}
-	\href{https://gist.github.com/ryanzidago/ef8093cb553913026b0cd3348cf07c7c}{Here} is an example, on how to find out the results.
-	
+	Here\footnote{\href{https://gist.github.com/ryanzidago/ef8093cb553913026b0cd3348cf07c7c}{https://gist.github.com/ryanzidago/ef8093cb553913026b0cd3348cf07c7c}} is an example, on how to find out the results.
+
 	\begin{testquestion}
 		\item [1.] In the context of sentiment analysis, is \textit{anger} a sentiment or an emotion?
 		\item [2.] Can a sentence carry several opposite sentiments at the same time?
 		\item [3.] What does the \verb|compound_score| returned by the function \verb|polarity_scores()| from vaderSentiment represent?
-		\item [4.] If you have a sentence with two clause, the first one being negative, the second one positive, which clause will impact the most the sentence's sentiment?
-		\item [5.] Does the vaderSentiment work best at the paragraph or sentence level? Does it give more accurante score after having computed the sentiment of a paragraph or after having computed the sentiment of a sentence?
+		\item [4.] If you have a sentence with two clauses, the first one being negative, the second one positive, which clause will impact the most the sentence's sentiment?
+		\item [5.] Does the vaderSentiment work best at the paragraph or sentence level? Does it give more accurate score after having computed the sentiment of a paragraph or after having computed the sentiment of a sentence?
 	\end{testquestion}
 
 		Answers:
 	\begin{itemize}
 		\item [1.] \textit{Anger} is an emotion. The emotion's sentiment would be \textit{negative}.
-		\item [2.] A sentence can carry several opposite sentiments. Let us consider the following example: "The waitress seemed to be under a lot of stress and the pizza arrived quiet late, but it was soooo tasty and worth the wait!". The first clause ("The waitress seemed to be under a lot of stress" and the pizza arrived quiet late") is a neutral/negative statement, while the second clause ("[...] but it was soooo tasty and worth the wait!") carries a positive sentiment.
+		\item [2.] A sentence can carry several opposite sentiments. Let us consider the following example: ``The waitress seemed to be under a lot of stress and the pizza arrived quiet late, but it was soooo tasty and worth the wait!''. The first clause (``The waitress seemed to be under a lot of stress and the pizza arrived quite late'') is a neutral/negative statement, while the second clause (``[...] but it was soooo tasty and worth the wait!'') carries a positive sentiment.
 		\item [3.] The \verb|compound_score| represent the overall sentiment of the sentence. If one would need to select only a single sentiment from the sentence, then one would take a look at the sentiment score contained in the \verb|compound_score|.
-		\item [4.] Generally, the last clause of a sentence is the most impactful. You can try to compute the \verb|compound_score| of the example provided in question 2, and then, rearrange the sentence in order to have the last clause at the first position within the sentence, and the first clause at the last (i.e. "The pizza was soooo tasty and worth the wait, but the waitress was seemed to be under a lot of stress and the pizza arrived quiet late.") Observe attentively how much of a difference the position of a clause can make!
-		\item [5.] vaderSentiment works best at the sentence level. It can be use to compute the sentiment of a whole document, or just a word, but it will not be as accurate, as when it is done at the sentence level.
+		\item [4.] Generally, the last clause of a sentence is the most impactful. You can try to compute the \verb|compound_score| of the example provided in question 2, and then, rearrange the sentence in order to have the last clause at the first position within the sentence, and the first clause at the last (i.e. ``The pizza was soooo tasty and worth the wait, but the waitress was seemed to be under a lot of stress and the pizza arrived quite late.'') Observe attentively how much of a difference the position of a clause can make!
+		\item [5.] vaderSentiment works best at the sentence level. It can be used to compute the sentiment of a whole document, or just a word, but it will not be as accurate, as when it is done at the sentence level.
 	\end{itemize}
-	
+
 	\begin{glossy}
-		\item[sentiment] In the context of sentiment analysis, a sentiment is an evaluation of a token, that can be either positive or negative. More and more studies also include a neutral sentiment, to have a better granularity in their analysis.
-		\item [sentiment analysis] Sentiment analysis is the study of sentiments/opinions that are contained in text.
-		\item [dictionary] A database (mostly simply a text file) that maps a token to a score representing the magnitude of its sentiment.
-		\item [token] The smallest entity that can be subject of a sentiment analysis; it can be an emoticon, a word or an abbreviation.
-		\item [bigram] A pair of tokens conveying meaning together.
-		\item [trigram] A set of three tokens conveying meaning together.
-		\item [user-generated-content] User-generated content, also more commonly abbreviated UGC, is the content that is published on the web, by users. It could be Facebook posts, Reddit comment, Instagram pictures, Youtube videos and so on. The vast majority of sentiment analysis deals with textual data.
-		\item [valence] Valence describes the intensity of a sentiment. Saying that VADER is a valence-aware dictionary means that it is able, not only to determine if a sentiment is either positive, negative or neutral, but also how much positive, negative or neutral the sentiment is, i.e. how intense is the assessed sentiment.
-		\item [Web 2.0] the Web 2.0 is the new generation of Web, where the users is not a mere consumer of web-content, but can and is encouraged to contriubte content to the plaftorms that they use (Wikipedia, Facebook, Twitter, TripAdvisor, etc ...).
+		\item [Bigram] A pair of tokens conveying meaning together.
+		\item [Dictionary] A database (mostly simply a text file) that maps a token to a score representing the magnitude of its sentiment.
+		\item [Sentiment analysis] Sentiment analysis is the study of sentiments/opinions that are contained in text.
+		\item[Sentiment] In the context of sentiment analysis, a sentiment is an evaluation of a token, that can be either positive or negative. More and more studies also include a neutral sentiment, to have a better granularity in their analysis.
+		\item [Simple Random Sampling] is a statistical method by which one select a smaller sample from a lager one.
+		\item [Token] The smallest entity that can be subject of a sentiment analysis; it can be an emoticon, a word or an abbreviation.
+		\item [Trigram] A set of three tokens conveying meaning together.
+		\item [User-generated-content] User-generated content, also more commonly abbreviated UGC, is the content that is published on the web, by users. It could be Facebook posts, Reddit comment, Instagram pictures, YouTube videos and so on. The vast majority of sentiment analysis deals with textual data.
+		\item [Valence] Valence describes the intensity of a sentiment. Saying that VADER is a valence-aware dictionary means that it is able, not only to determine if a sentiment is either positive, negative or neutral, but also how much positive, negative or neutral the sentiment is, i.e. how intense is the assessed sentiment.
+		\item [Web 2.0] the Web 2.0 is the new generation of Web, where the users are not a mere consumer of web-content, but can and is encouraged to contribute content to the platforms that they use (Wikipedia, Facebook, Twitter, TripAdvisor, etc ...).
+		\item [Wisdom of the crowds] is the process by which one uses the intelligence of a group of individuals instead of relying on a single expert
 	\end{glossy}
-	
