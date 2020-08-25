@@ -1,0 +1,330 @@
+\chapter{Data Collection}\label{ch:data collection}
+\chapterauthor{Paola Guerrero \\ guerrero\_gonzalez.paola@stud.hs-fresenius.de}
+
+
+\begin{abstract}
+	Learning and building knowledge is a natural inclination of human beings, we are in search of learning new things every day, whether its business, marketing, humanities and many others, data play an important role. Any process that requires searching for information and knowledge, one of the first things must be to collect data. It helps us have a better understanding of fields that are unknown to us, have more depth in a specific topics, and solution of problems. Data collection facilitates and improves decision-making processes, the quality of decisions made without data to support them does not have the same impact compared to decisions that have a well-grounded basis. Companies also rely on this method since their strategies and their performance has become effective by tracking their progress and monitoring their data. 
+\end{abstract}
+
+\begin{goals}
+	\item You will be able to identify the importance of Data collection in Data Science.
+	\item You will be able understand the importance of an API to access and import information into R.
+	\item You will be able to collect and analyze the data of twitter users using R.
+	\item You will be able to list one key package in R that is used to deal with text mining.
+	\item You will be able to have a better understanding of the benefits that Twitter data has on real-world application. 
+	
+\end{goals}
+
+\section{Motivation}
+The combination of data from multiple sources and disciplines enables the generation of new datasets, information, and knowledge \citep{JAEGER2010371}). Furthermore, the availability of open data facilitates innovation and offers opportunities to governments, businesses and entrepreneurs to harness the power of data for economic, social and scientiﬁc gains  \citep{SADIQ2017150}).
+Data recompilation helps market researchers collect all the raw data and bring benefits by providing valid information, helping you achieve one a purpose. Fundamentally, people understand the importance of collecting data as it will depend on the right research being carried out. Likewise, if the right sources are not sought, the investigation will go down the wrong path.
+
+Most modern companies use data in various ways. The most prominent would be as a means to improve their business strategy and essence in all possible ways. Technological advances has helped us collect information that can be of great benefit, using tools such as web site surveys, paper questionnaires, case studies, checklists, assisted interviewing systems, websites and many more are beneficial to gather new information.
+
+
+By having a sufficient amount of data, it is possible to observe if a product or project that is being developed has potential or needs further analyzed.  Data extracted from certain apps are also used by researchers with different backgrounds (pollsters, marketers, academics from different disciplines) to answer a variety of questions, ranging from simple information about particular users or events.
+In the \textbf{Methodological Issues} section the reader will have a better understanding of the approaches regarding data collection and how Twitter and social media is a powerful tool to gather data. \textbf{Application in R} section we will analyze Bill Gates's account by mining tweets in R. \textbf{Examples from the real world} section we wil analyze how data collection in Twitter could possibly predict future performances of companies.
+
+
+
+\section{Methodological Issues}
+
+Data is one of the most important and valuable resources businesses have in today’s market. The more information you have about your customers, the better you can adapt to their needs and interest\footnote{\href{https://www.lotame.com/what-are-the-methods-of-data-collection/}{https://www.lotame.com/what-are-the-methods-of-data-collection/}}. To have a better understanding of data collection, one has to have in mind that there are different types of data collection methods\citep{harrell2009data}):  
+
+\begin{itemize}
+	
+	\item Primary data collection refers to the data collected on firsthand. Typically, it is data obtained straight from one’s audience.
+	\item Second data collection refers to the data that is gathered after another party initially recorded it.
+	\item Third data collection refers to information a company has collected from numerous sources.
+	
+\end{itemize}
+
+One can also divide the methods into Quantitative data which comes in the form of numbers, quantities, and values or Qualitative data that is descriptive rather than numeric. By having into consideration all of these aspects, the collection of data will become less complex. To have a better understanding of this broad topic, let us consider Data collection on Twitter. 
+Analyzing tweets and social interaction on Twitter can help to answer social science research questions, as it is very public and it is easy to access the messages, Contrary to Facebook and Instagram. 
+
+Being Twitter a versatile communications platform to users around the globe, people can interact and express their opinions, Twitter is also an excellent source of information\footnote{\href{https://www.researchgate.net/publication/276974275_Data_collection_on_Twitter}{https://www.researchgate.net/publication/276974275\_Data	\_collection\_on	\_Twitter}}. Data extracted from Twitter is used by researchers from all over the world with different backgrounds, to answer different types of questions, starting from simple information about particular users or events main questions might be: How many followers does a given user have? Who is the most active user tweeting under a certain hashtag? Which users are central in a large network? It also includes questions of how the information goes viral among a group of users. Depending on the purpose, different tools can be applied by using Twitter text mining through R\footnote{\href{https://medium.com/@wanjirumaggie45/the-power-of-social-media-analytics-twitter-text-mining-using-r-1fceb26ac32b}{https://medium.com/@wanjirumaggie45/the-power-of-social-media-analytics-twitter-text-mining-using-r-1fceb26ac32b}}.
+
+While \citep{inbook})argues that Twitter is used in many countries and languages, user communities change significantly concerning their size, position, and usage habits. Researchers should be aware of the seemingly small details that may be reflected in the data, for example, peaks in use over a day, or change in activity over the weekend compared to weekdays, this can incredibly affect the data collected. Researchers should also be aware that many active users do not tweet daily, or perhaps even weekly, while others are very active and alter the representativeness of a sample accordingly.
+However, to analyze data on twitter it is necessary to obtain Twitter API, which is the acronym for Application Programming Interface\footnote{\href{ https://www.mulesoft.com/resources/api/what-is-an-api}{Link https://www.mulesoft.com/resources/api/what-is-an-api}}. It is software acting as an intermediary function that allows applications to communicate with each other. 
+
+To collect data on Twitter it is necessary to obtain an API. rather than offering a single API, there are three data interfaces available on Twitter: REST API and Streaming API which are free, followed by the Search API which consists of deeper data analytics and requires a subscription. In a broad aspect, API allows users to access Twitter data in real-time. By using these services, one can search for tweets published in the past, stream tweets in real-time, manage Twitter accounts and ads.  Data is constantly flowing from the requested URL, and it is up to the researcher to develop or employ tools that maintain a persistent connection to this stream of data while simultaneously processing it.
+On the first hand, one has to authenticate when requesting Twitter API, Twitter uses an “open protocol to allow secure authorization in a simple and standard method from web, mobile, and desktop applications. One has to answer a list of questions to establish in which way the collected data is going to be used. This is a security method to secure the platform data and their users\footnote{\url{https://medium.com/@GalarnykMichael/accessing-data-from-twitter-api-using-r-part1-b387a1c7d3e.\#cjisrtv0v}}
+
+The issues concerning this applied method of research based on Twitter data are most commonly since not all types of data and forms of analysis are accurate and precise in answering all research questions. Due to its tendency to be based on data rather than questions, much of the current quantitative research on Twitter focuses on measuring and comparing specific parameters in data samples\footnote{\href{https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/collecting-and-analyzing-twitter-using-r/\#collecting-tweets-using-the-rtweet-package}{https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/collecting-and-analyzing-twitter-using-r/\#collecting-tweets-using-the-rtweet-package}}. This often leads to very large samples and lacks the well-grounded sets of specific research questions.
+This is not the case with traditional instruments such as surveys and conventional content analysis, it should be noted that even the exploratory phase of research is markedly quantitative when exploring social media. Searching, filtering, and sorting are the only viable way to make masses of content readable to the human researcher, and are a logical first step in any analysis, even in qualitative studies. At the same time, quantitative research must be aligned with the questions asked. It must take into consideration how representative Twitter users are of the general population, both on Twitter and off it. 
+
+Making judgments about Twitter user populations based on tweets alone can be unfavorable in the process of data collection, since some users read the content but are not as active in publishing and might be overlooked by researchers. Too much emphasis may be placed on very vocal users and the potential of research may be lost. Research on the general population based on Twitter must not be considered a definitive result, more research must be done outside the application to confirm a theory or for future valid data collection. 
+
+
+\section{Applications in R}\label{sec:}
+There are many ways to collect Twitter data, however, in this section, we will be using Rs rtweet package to analyze Bill Gates tweets, to give the reader a better understanding on how to collect Twitter data using R\footnote{\href{https://www.r-project.org/about.html}{https://www.r-project.org/about.html}}. R provides a wide variety of statistical, linear and nonlinear modeling, classical statistical tests, time-series analysis, classification, clustering, graphical techniques and many more. 
+As mentioned in the last section, it is necessary to have API access to retrieve the tweets and apply for a developer account using the following website: 
+https://developer.twitter.com/en/apply-for-access\footnote{\href{https://developer.twitter.com/en/apply-for-access}{https://developer.twitter.com/en/apply-for-access}}
+
+One has to fill in a simple application form, which includes explaining in more detail what is going to be analyzed. Once the application has been accepted you must receive important credentials that will be necessary to use in R including Customer key, consumer secret, access token, access secret.
+
+Once you have all the information from above, we are now able to start R and download the “rtweet” package that will help you extract the tweets\footnote{\href{https://towardsdatascience.com/a-guide-to-mining-and-analysing-tweets-with-r-2f56818fdd16}{https://towardsdatascience.com/a-guide-to-mining-and-analysing-tweets-with-r-2f56818fdd16}}.\\
+\\
+Install.packages("rtweet")\\ 
+library (rtweet)\\
+\\
+After you have completed the step above it is necessary to place your authentication information, this is the information you requested when applying for twitter API.
+\\
+twitter\_token <- create\_token(
+app = ****,
+\\
+consumer\_key = ****,
+\\
+consumer\_secret = ****,
+\\
+set\_renv = TRUE)\\
+\\
+Depending on the information that you are looking for, it is recommended that you search for tweets that contain a specific word or hashtag, it is also good to know that we can only extract tweets from the past 6 to 9 days. When extracting Twitter data, we want to make sure we analyze a specific user account, in this case, we will be analyzing Bill Gates and we have to implement the get\_timeline function. Have in consideration that Twitter only allows you to extract 3200 tweets. An example would be:\\
+\\
+Gates <- get\_timeline("@BillGates", n= 3200)\\
+\\
+Now we will analyze the tweets and discover the best and least performing tweets and have a clear overview of the account from Bill Gates. To do so, you have to distinguish between organic tweets that reach your followers without the use of ads or promotions, retweets, and replies\footnote{\href{https://blog.twitter.com/en_us/a/2014/introducing-organic-tweet-analytics.html}{https://blog.twitter.com/en\_us/a/2014/introducing-organic-tweet-analytics.html}}. The following example allows you to remove retweets and replies, leaving you with the organic tweets which are the ones we are interested in.
+
+
+\begin{flushleft}
+	\# Remove retweets
+	Gates\_tweets\_organic <- Gates\_tweets[Gates\_tweets\$is\_retweet==FALSE, ]\\ 
+	\# Remove replies\\
+	Gates\_tweets\_organic <- subset(Gates\_tweets\_organic, is.na(Gates\_tweets\_organic\$reply\_to\_status\_id))
+\\
+\end{flushleft}
+After the example from above, you’ll want to analyze engagement by looking at the variables: favorite\_count which refers to the number of likes or retweet\_count which refers to the number of retweets. Arrange them in descending order for example:
+\\
+\\
+Gates\_tweets\_organic <- Gates\_tweets\_organic \%>\% arrange(-favorite\_count)
+Gates\_tweets\_organic[1,5]Gates\_tweets\_organic <- Gates\_tweets\_organic \%>\% arrange(-retweet\_count)
+Gates\_tweets\_organic[1,5]
+\\
+\\
+Analyzing the replies, retweets and organic tweets can tell you a great deal about the type of account you’re analyzing. Some accounts are known to have exclusively more retweets, without any individual content. Finding a good ratio of replies, retweets, and organic help you differentiate between accounts; therefore, a key metric also helps monitor if one wishes to improve the performance of his or her account.
+Make sure to create three different data sets. As you’ve already created a dataset containing only the organic tweets in the previous steps, simply now create a dataset containing only the retweets and one containing only the replies. This will help you to be more organized when you analyzing the data.
+\begin{flushleft}
+	\# Keeping only the retweets
+	Gates\_retweets <- Gates\_tweets[Gates\_tweets\$is\_retweet==TRUE,]
+	\# Keeping only the replies
+	Gates\_replies <- subset(Gates\_tweets, !is.na(Gates\_tweets\$reply\_to\_status\_id))
+\\
+\end{flushleft}
+Create a separate data frame containing the number of organic tweets, retweets, and replies. 
+\begin{flushleft}
+	\#Creating a data frame
+	data <- data.frame(
+	category=c("Organic", "Retweets", "Replies"),
+	count=c(2856, 192,120)
+\end{flushleft}
+Once you’ve done that, you can prepare your data frame, which includes adding columns that calculate the ratios, percentages and some visualizations such as specifying the legend and rounding up your data.
+\begin{flushleft}
+
+	\# Adding columns
+	data\$fraction = data\$count / sum(data\$count)
+	data\$percentage = data\$count / sum(data\$count) * 100
+	data\$ymax = cumsum(data\$fraction)
+	data\$ymin = c(0, head(data\$ymax, n=-1))\\
+	\\
+	\# Rounding the data to two decimal points
+	data <- round\_df(data, 2)\\
+	\\
+	\#Type\_of\_Tweet <- paste(data\$category, data\$percentage, "\%")
+	ggplot(data, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=Type\_of\_Tweet)) +
+	geom\_rect() +
+	coord\_polar(theta="y") +
+	xlim(c(2, 4)) +
+	theme\_void() +
+	theme(legend.position = "right")
+\end{flushleft}
+
+For the example above, the result is that Bill Gates has 90.15\% organic tweets, 3.79\% replies and 6.06\% retweets. By this we can come to the conclusion that Bill Gates Twitter account has mostly contentof his own.
+It is also possible to have an overview of the activity that Bill Gates has in months or years. in the following example, one can analyze the frequency of his tweets.\\
+\\
+colnames(Gates\_tweets)[colnames(Gates\_tweets)=="screen\_name"] <- "Twitter\_Account"ts\_plot(dplyr::group\_by(Gates\_tweets, Twitter\_Account), "year") +
+ggplot2::theme\_minimal() +
+ggplot2::theme(plot.title = ggplot2::element\_text(face = "bold")) +
+ggplot2::labs(
+x = NULL, y = NULL,
+title = "Frequency of Tweets from Bill Gates",
+subtitle = "Tweet counts aggregated by year",
+caption = "\nSource: Data collected from Twitter's REST API via rtweet"
+
+	
+The example form above will helps us see what is the frequency of tweets from Bill Gates, the Tweets aggregated by year from Bill Gates was at its highest between the years 2012 and 2014. In 2018 there is a drop in the frequency of his tweets.This next part will be analyzing which words are mostly used by Bill Gates. The line of code below provides you with a better understanding.\\
+\\
+tweets \%>\% # gives you a bar chart of the most frequent words found in the tweets
+count(word, sort = TRUE) \%>\%
+top\_n(15) \%>\%
+mutate(word = reorder(word, n)) \%>\%
+ggplot(aes(x = word, y = n)) +
+geom\_col() +
+xlab(NULL) +
+coord\_flip() +
+labs(y = "Count",
+x = "Unique words",
+title = "Most frequent words found in the tweets of Bill Gates",
+subtitle = "Stop words removed from the list")
+
+The most frequent words found in the tweets of Bill Gates was: "People" as the most used word, "world", "im", "progress", "lives", "polio", "energy", "book", "heres", "health", "fight", "read", "global", "video" and "students".Due to his work as a philanthropist\\
+\\
+We can also see the most common hashtags used by Bill in  his Twitter account. A good to visualize this is by using a word cloud like the following example:
+\begin{flushleft}
+Gates\_tweets\_organic\$hashtags <- \\as.character(Gates\_tweets\_organic\$hashtags)\\
+Gates\_tweets\_organic\$hashtags <- gsub("c\\(", "",\\ Gates\_tweets\_organic\$hashtags)
+set.seed(1234)
+wordcloud(Gates\_tweets\_organic\$hashtags, min.freq=5, scale=c(3.5, .5), random.order=FALSE, rot.per=0.35, 
+colors=brewer.pal(8, "Dark2")) 
+\end{flushleft}
+
+The most used hashtags from Bill Gates are: "Polio","Malaria","Family planning","Endmalaria","Aids","Givingtuesday","Smartaids","India","Toilet".
+
+\section{Example(s) From the Real World}\label{sec:examplerealworld}
+Recently, several researchers have proposed methods that use social media data, including Twitter data, to predict real-world events\citep{LIU20153893}).
+\citep{GERBER2014115})presents a crime prediction model, based on linguistic analysis and statistical topic modeling, that uses spatiotemporally tagged tweets across Chicago, Illinois. Researchers show that their prediction methods that use social media data outperform existing predictors that forecast real-world events, such as Oscar award winners and many more. 
+
+For example, in order to predict population health indices, \citep{NGUYEN201722})propose a mathematical model based on the distributions of textual features over Twitter data.
+\citep{LIM2019100007})makes reference to a case study for United Airlines which validates whether or not collecting data is applicable to identify if Twitter users feedback have causal effects on enterprise outcomes. They analyze the United Express Flight 3411 incident, where a passenger was forcibly dragged out of a United Airlines plane. This caused Twitter users to be very upset. In relatively short period the Twitter data was collected, but among the whole dataset, 140, 286 tweets were containing the term “united airlines”, “united airline”, “unitedairlines”, (the abbreviation for “united airlines”) are extracted for this case study.
+The United Express Flight 3411 incident induced Twitter users to use certain terms (e.g., “drag”, “remove”, “forcible”). There were results provided by \citep{LIM2019100007}) case study that also indicate identified influential term groups can be used to predict enterprise future outcomes. 
+
+
+\section{Conclusion}
+ 
+Throughout this chapter we have been able to understand more about data collection and the methods in which data collection in gathered, we can also observe how collecting data has changed due to technology and how researchers carry out their investigations. We have successfully carried out examples on how data collection can be used with R and how social media tools can be beneficial when collecting data for a specific research. Companies should invest more in internal infrastructure and make sure they are up to date with all technologies. Every department should be digitized, however, we can see that many start with an old mentality and the process of collecting data becomes more frustrating and tedious. Data Collection can be a short or long process depending on what the objective is, however, we can not rule out that companies need to invest more time and money in training and giving the necessary tools to employees.
+
+
+
+
+\section{Exercises}
+
+Social media has become an important part of everyone’s life, it has almost become an addiction for most, especially young people. This social media survey questions are designed to collect data and gain more knowledge on how the students from Hochschule Fresenius mange their media usage \footnote{\href{https://www.questionpro.com/survey-templates/social-media-survey/}{https://www.questionpro.com/survey-templates/social-media-survey/}}.
+
+\begin{enumerate}[1)]
+\item Considering your experience with social media websites Facebook, Twitter, Instagram, how likely are you to recommend it to your family and friends?
+
+	\begin{enumerate}[a)]
+	\item Extremely highly 
+	\item Very likely	
+	\item Somewhat likely 	
+	\item Not at all likely 
+	\end{enumerate}
+	
+\item Which of the following social media websites do you currently have an account?
+	\begin{enumerate}[a)]
+	\item Facebook
+	\item Twitter
+	\item Instagram
+	\item LinkedIn
+	\end{enumerate}
+
+\item What is your go-to device to access your social media feed?
+
+	\begin{enumerate}[a)]
+	\item Tablet
+	\item Mobile 
+	\item Laptop
+	\item desktop
+	\end{enumerate}
+
+\item How often do you check-in to your social media accounts in any given week?
+
+	\begin{enumerate}[a)]
+	\item Daily 
+	\item Every two days
+	\item Once a week 
+	\item Every hour 
+	\item Never 
+	\end{enumerate}
+
+\item Which of the following social media websites do you visit most frequently?
+
+	\begin{enumerate}[a)]
+	\item Instagram
+	\item Facebook
+	\item Twitter
+	\item Snapchat
+	\end{enumerate}
+
+\item On a regular day how many times do you post pictures, comments etc. on your social media accounts?
+
+	\begin{enumerate}[a)]
+	\item Extremely often
+	\item Very often
+	\item Moderately often
+	\item Slightly often
+	\item Not at all often 
+	\end{enumerate}
+	
+\item On an average how much time do you spend on social media?
+
+	\begin{enumerate}[a)]
+	\item Less than 30 minutes
+	\item hour
+	\item 1-2 hours
+	\item 3-4 hours
+	\item More than 4 hours
+	\end{enumerate}
+
+\item What is your purpose of using social media website?
+
+	\begin{enumerate}[a)]
+	\item To meet new people
+	\item To find a date
+	\item To promote your business
+	\item To find employment 
+	\item Event planning
+	\end{enumerate}
+	
+\item Has social media affected your relationship with loved ones?
+
+	\begin{enumerate}[a)]
+	\item Yes
+	\item No
+	\end{enumerate}
+
+\end{enumerate}
+This is a practical example to give the reader an insight of what is like to collect data though a survey. This social media survey helps experts analyze how much social media affect the students of Hochshule Fresenius. With this survey there is more information that tells us in more detail what are the personalities and attributes of the students and how much time they use on social media, making it easier for researchers to study.  No other research method can provide this broad capability, which ensures a more accurate sample to gather targeted results in which to draw conclusions and make important decisions.
+
+\begin{testquestion}
+
+\item[1)] What are the benefits of collecting data?
+\item[2)]How should data be collected?
+\item[3)]Identify issues and/or opportunities for collecting data
+\item[4)]Can secondary data be used for both broad and specific uses?
+\item[5)]What sources of data should be used to collect information? 
+\end{testquestion}
+\\
+Answers:
+	\begin{itemize}
+\item[1)] Collecting valuable data is beneficial to proactively address issues and create opportunities.
+\item[2)] The two way in which data should be collected is through qualitative and quantitative research. Both approaches, while distinct can produce meaningful data analysis and results.
+\item[3)]It is important to conduct an internal and external assessment to understand what are the goals that you want to achieve within your organization, and what are results you are expecting out of the collected data. The opportunities are that you can improve your product or services and satisfy your customers by having more data on likes and dislikes.
+\item[4)] Yes, secondary data can be used for both broad and specific uses, since every piece of information and sources is relevant and may be of great use for the researcher. 
+\item[5)]The sources used to collect data are pre-existing data, official data, survey data, interviews, and focus groups. 
+	\end{itemize}
+
+
+
+\begin{glossy}
+	\item[Data collection] Is the process of gathering and measuring information on targeted variables in an established system, which then enables one to answer relevant questions and evaluate outcomes. 
+	\item[API] Is An application programming interface (API) is a computing interface It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, the conventions to follow etc.		
+	\item[Organic tweets] Defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, the conventions to follow, etc.
+		
+	\item[Retweets] Is a re-posting of a Tweet. Twitter's Retweet feature helps you and others quickly share that Tweet with all of your followers.
+	
+	\item[Replies] A response to another person's Tweet.
+	
+	\item[R] Is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
+	
+	\item[URL] A colloquially termed a web address, is a reference to a web resource that specifies its location on a computer network and a mechanism for retrieving it. A URL is a specific type of uniform resource identifier.
+	
+	\item[Clustering] Is the task of grouping a set of objects in such a way that objects in the same group are more similar to each other. 
+	\item [Token] The smallest entity that can be subject of a sentiment analysis; it can be an emoticon, a word or an abbreviation.
+	\item [Data mining] Is the process of discovering patterns in large data sets.
+	
+	
+\end{glossy}
+
+
+
+
